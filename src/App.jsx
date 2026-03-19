@@ -581,7 +581,7 @@ function ProjectCard({ accentLabel, accentColor, borderColor, title, subtitle, m
                 style={{ backgroundColor: accentColor }}
               />
               <div>
-                <p className="text-xs font-semibold uppercase tracking-wide mb-1.5" style={{ color: accentColor }}>
+                <p className="text-sm font-bold mb-2" style={{ color: accentColor }}>
                   {c.label}
                 </p>
                 <p className="text-gray-700 text-sm leading-7">{c.text}</p>
@@ -670,7 +670,7 @@ function NHNGroupCard() {
                     style={{ backgroundColor: NHN_ACCENT }}
                   />
                   <div>
-                    <p className="text-xs font-semibold uppercase tracking-wide mb-1.5" style={{ color: NHN_ACCENT }}>
+                    <p className="text-sm font-bold mb-2" style={{ color: NHN_ACCENT }}>
                       {c.label}
                     </p>
                     <p className="text-gray-700 text-sm leading-7">{c.text}</p>
