@@ -38,9 +38,9 @@ const LOST_ARK_CONTRIBUTIONS = [
   },
 ]
 
-const HISTORY_ITEMS = [
+const NHN_ITEMS = [
   {
-    company: 'NHN RPG / NStudio',
+    studio: 'NHN RPG / NStudio',
     period: '2021.01 – 2021.07',
     project: '좀비 서바이벌 프로젝트',
     engine: 'unreal',
@@ -57,7 +57,7 @@ const HISTORY_ITEMS = [
     ],
   },
   {
-    company: 'NHN / PeachStudio',
+    studio: 'NHN / PeachStudio',
     period: '2018.02 – 2020.12',
     project: 'Dr. Mario World',
     engine: 'unity',
@@ -75,7 +75,7 @@ const HISTORY_ITEMS = [
     ],
   },
   {
-    company: 'NHN Blackpick / SM개발2팀',
+    studio: 'NHN Blackpick / SM개발2팀',
     period: '2017.09 – 2018.02',
     project: '스포츠 모바일 (야구9단 & 풋볼데이)',
     engine: 'unity',
@@ -252,33 +252,33 @@ function SectionHeading({ children }) {
 
 // ─── YouTube 버튼 ──────────────────────────────────────────────────────────────
 
-function YTButton({ videoId, label }) {
+function YTBanner({ videoId, label }) {
   return (
     <a
       href={`https://youtu.be/${videoId}`}
       target="_blank"
       rel="noopener noreferrer"
-      className="group w-40 shrink-0 block bg-white border border-gray-200 hover:border-[#34799e]/50 hover:shadow-md rounded-lg overflow-hidden transition-all"
+      className="group relative block w-full overflow-hidden rounded-lg bg-black"
+      style={{ aspectRatio: '16/6' }}
     >
-      <div className="relative w-full h-24 overflow-hidden bg-gray-100">
-        <img
-          src={`https://img.youtube.com/vi/${videoId}/0.jpg`}
-          alt={label}
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-        />
-        <div className="absolute inset-0 flex items-center justify-center bg-black/30 group-hover:bg-black/20 transition-colors">
-          <div className="w-9 h-9 bg-red-600 rounded-full flex items-center justify-center shadow-lg">
-            <svg viewBox="0 0 16 16" fill="white" className="w-3 h-3 ml-0.5">
-              <polygon points="4,2 14,8 4,14" />
-            </svg>
-          </div>
+      <img
+        src={`https://img.youtube.com/vi/${videoId}/hqdefault.jpg`}
+        alt={label}
+        className="w-full h-full object-cover opacity-80 group-hover:opacity-60 group-hover:scale-105 transition-all duration-300"
+      />
+      {/* 좌→우 그라디언트 오버레이 */}
+      <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-transparent to-transparent" />
+      {/* 재생 버튼 + 라벨 */}
+      <div className="absolute inset-0 flex items-center gap-4 px-5">
+        <div className="w-11 h-11 bg-red-600 group-hover:bg-red-500 rounded-full flex items-center justify-center shadow-lg shrink-0 transition-colors">
+          <svg viewBox="0 0 16 16" fill="white" className="w-4 h-4 ml-0.5">
+            <polygon points="4,2 14,8 4,14" />
+          </svg>
         </div>
-      </div>
-      <div className="px-2.5 py-2">
-        <p className="text-gray-700 text-[11px] font-medium group-hover:text-[#34799e] transition-colors leading-snug truncate">{label}</p>
-        <p className="text-gray-400 text-[10px] flex items-center gap-1 mt-0.5">
-          <ExternalLink size={9} /> YouTube
-        </p>
+        <div>
+          <p className="text-white text-sm font-semibold leading-snug drop-shadow">{label}</p>
+          <p className="text-white/60 text-xs mt-0.5">Watch on YouTube</p>
+        </div>
       </div>
     </a>
   )
@@ -387,10 +387,10 @@ function Header({ activeSection, mobileMenuOpen, setMobileMenuOpen }) {
         <div className="relative z-10 max-w-4xl mx-auto px-6 py-14 text-center">
           {/* 아바타 */}
           <div
-            className="w-24 h-24 rounded-full mx-auto mb-6 flex items-center justify-center border-2 text-3xl font-bold"
+            className="w-24 h-24 rounded-full mx-auto mb-6 flex items-center justify-center border-2 text-sm font-bold tracking-widest"
             style={{ backgroundColor: `${ACCENT}25`, borderColor: `${ACCENT}60`, color: ACCENT }}
           >
-            ST
+            Creataek
           </div>
 
           {/* 이름 */}
@@ -547,27 +547,30 @@ function ProjectCard({ accentLabel, accentColor, borderColor, title, subtitle, m
 
       {/* 본문 */}
       <div className="p-6 bg-white">
-        <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-4">
-          <div>
-            <h3 className="text-[#1a1a1a] font-bold text-xl tracking-tight">{title}</h3>
-            <p className="text-sm mt-0.5 font-medium" style={{ color: accentColor }}>{subtitle}</p>
-            <div className="flex flex-wrap items-center gap-x-3 gap-y-2 mt-2 text-xs text-gray-500">
-              {meta.map((m, i) => (
-                <span key={i}>{m}</span>
-              ))}
-              {engine && <EngineIcon engine={engine} />}
-              {badge && (
-                <span className={`font-medium ${badgeGreen ? 'text-emerald-600' : 'text-gray-400'}`}>
-                  {badgeGreen ? '● ' : ''}{badge}
-                </span>
-              )}
-            </div>
+        <div className="mb-4">
+          <h3 className="text-[#1a1a1a] font-bold text-xl tracking-tight">{title}</h3>
+          <p className="text-sm mt-0.5 font-medium" style={{ color: accentColor }}>{subtitle}</p>
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-2 mt-2 text-xs text-gray-500">
+            {meta.map((m, i) => (
+              <span key={i}>{m}</span>
+            ))}
+            {engine && <EngineIcon engine={engine} />}
+            {badge && (
+              <span className={`font-medium ${badgeGreen ? 'text-emerald-600' : 'text-gray-400'}`}>
+                {badgeGreen ? '● ' : ''}{badge}
+              </span>
+            )}
           </div>
-          {videoId && <YTButton videoId={videoId} label={`${title} — YouTube`} />}
         </div>
 
         {summary && (
-          <p className="text-gray-600 text-sm mb-5 pb-5 border-b border-gray-100">{summary}</p>
+          <p className="text-gray-600 text-sm mb-4 pb-4 border-b border-gray-100">{summary}</p>
+        )}
+
+        {videoId && (
+          <div className="mb-5">
+            <YTBanner videoId={videoId} label={`${title} — YouTube`} />
+          </div>
         )}
 
         <div className="space-y-4">
@@ -604,7 +607,7 @@ function LostArk() {
           borderColor="#34799e"
           title="Lost Ark"
           subtitle="Smilegate RPG · Tripod Studio"
-          meta={['2021.07 – 현재', 'Unreal Engine 3']}
+          meta={['2021.07 – 현재']}
           badge="라이브 서비스 중"
           badgeGreen
           videoId="jBspl-Am1eY"
@@ -619,41 +622,77 @@ function LostArk() {
 
 // ─── Professional History ──────────────────────────────────────────────────────
 
-// 프로젝트별 강조 색상 (Lost Ark 외 색상 계열로 차별화)
-const PROJECT_COLORS = [
-  { accent: '#5a7a5a', border: '#5a7a5a', label: 'NHN RPG' },   // 올리브 그린
-  { accent: '#7a5a8a', border: '#7a5a8a', label: 'NHN' },        // 모브 퍼플
-  { accent: '#7a6040', border: '#7a6040', label: 'NHN Blackpick' }, // 브라운
-]
+const NHN_ACCENT = '#5a7a5a'
+
+function NHNGroupCard() {
+  return (
+    <div className="rounded-xl overflow-hidden border-2" style={{ borderColor: NHN_ACCENT }}>
+      {/* 그룹 헤더 바 */}
+      <div className="flex items-center justify-between px-5 py-2.5" style={{ backgroundColor: NHN_ACCENT }}>
+        <div className="flex items-center gap-2">
+          <span className="w-1.5 h-1.5 rounded-full bg-white opacity-80" />
+          <span className="text-white text-[11px] font-bold tracking-[0.15em] uppercase">NHN Group</span>
+        </div>
+        <span className="text-white/70 text-[11px] font-mono">2017.09 – 2021.07</span>
+      </div>
+
+      {/* 서브 프로젝트 목록 */}
+      <div className="bg-white divide-y divide-gray-100">
+        {NHN_ITEMS.map((item, i) => (
+          <div key={i} className="p-6">
+            {/* 프로젝트 헤더 */}
+            <div className="mb-4">
+              <h3 className="text-[#1a1a1a] font-bold text-lg tracking-tight">{item.project}</h3>
+              <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5 mt-1.5 text-xs text-gray-500">
+                <span className="font-medium text-gray-600">{item.studio}</span>
+                <span>{item.period}</span>
+                {item.engine && <EngineIcon engine={item.engine} />}
+                {(item.released || item.status) && (
+                  <span className={`font-medium ${item.released ? 'text-emerald-600' : 'text-gray-400'}`}>
+                    {item.released ? `● ${item.released}` : item.status}
+                  </span>
+                )}
+              </div>
+            </div>
+
+            {item.videoId && (
+              <div className="mb-4">
+                <YTBanner videoId={item.videoId} label={`${item.project} — YouTube`} />
+              </div>
+            )}
+
+            {/* 기여 내용 */}
+            <div className="space-y-4">
+              {item.contributions.map((c, j) => (
+                <div key={j} className="flex gap-4">
+                  <div
+                    className="shrink-0 w-0.5 rounded-full mt-1 self-stretch min-h-[1rem]"
+                    style={{ backgroundColor: NHN_ACCENT }}
+                  />
+                  <div>
+                    <p className="text-xs font-semibold uppercase tracking-wide mb-1.5" style={{ color: NHN_ACCENT }}>
+                      {c.label}
+                    </p>
+                    <p className="text-gray-700 text-sm leading-7">{c.text}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
 
 function History() {
   return (
     <Section id="history">
       <SectionHeading>Professional History</SectionHeading>
-      <motion.p variants={fadeUp} className="text-gray-500 text-xs mb-8 -mt-4">
-        NHN Group · 2017 – 2021 · 모바일/PC 플랫폼 빌드업 및 글로벌 런칭 경험
-      </motion.p>
       <div className="space-y-6">
-        {HISTORY_ITEMS.map((item, i) => {
-          const col = PROJECT_COLORS[i]
-          return (
-            <motion.div key={i} variants={fadeUp}>
-              <ProjectCard
-                accentLabel={col.label}
-                accentColor={col.accent}
-                borderColor={col.border}
-                title={item.project}
-                subtitle={item.company}
-                meta={[item.period]}
-                badge={item.released || item.status}
-                badgeGreen={!!item.released}
-                videoId={item.videoId}
-                engine={item.engine}
-                contributions={item.contributions}
-              />
-            </motion.div>
-          )
-        })}
+        <motion.div variants={fadeUp}>
+          <NHNGroupCard />
+        </motion.div>
       </div>
     </Section>
   )
@@ -737,36 +776,31 @@ function PersonalWork() {
                   </div>
 
                   <div className="flex-1 pb-1">
-                    {/* 제목/태그(좌) + YT 썸네일(우) */}
-                    <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 mb-2.5">
-                      <div>
-                        {/* 제목 + 기간 */}
-                        <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-2">
-                          <h3 className="text-gray-900 font-bold text-base">{proj.title}</h3>
-                          <span className="text-gray-400 text-xs font-mono">{proj.period}</span>
-                        </div>
-
-                        {/* 엔진 아이콘 + 태그 배지 */}
-                        <div className="flex flex-wrap items-center gap-1.5">
-                          {proj.engine && <EngineIcon engine={proj.engine} />}
-                          {sortTags(proj.tags).map((tag) => (
-                            <span
-                              key={tag}
-                              className={`px-2 py-0.5 text-[11px] font-semibold rounded border ${TAG_COLOR_MAP[tag] ?? TAG_COLOR_DEFAULT}`}
-                            >
-                              {tag}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-
-                      {/* YouTube 썸네일 (우측) */}
-                      {proj.videoId && (
-                        <div className="shrink-0">
-                          <YTButton videoId={proj.videoId} label={`${proj.title} — YouTube`} />
-                        </div>
-                      )}
+                    {/* 제목 + 기간 */}
+                    <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-2">
+                      <h3 className="text-gray-900 font-bold text-base">{proj.title}</h3>
+                      <span className="text-gray-400 text-xs font-mono">{proj.period}</span>
                     </div>
+
+                    {/* 엔진 아이콘 + 태그 배지 */}
+                    <div className="flex flex-wrap items-center gap-1.5 mb-3">
+                      {proj.engine && <EngineIcon engine={proj.engine} />}
+                      {sortTags(proj.tags).map((tag) => (
+                        <span
+                          key={tag}
+                          className={`px-2 py-0.5 text-[11px] font-semibold rounded border ${TAG_COLOR_MAP[tag] ?? TAG_COLOR_DEFAULT}`}
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+
+                    {/* YouTube 배너 */}
+                    {proj.videoId && (
+                      <div className="mb-3">
+                        <YTBanner videoId={proj.videoId} label={`${proj.title} — YouTube`} />
+                      </div>
+                    )}
 
                     {/* 설명 */}
                     <p className="text-gray-600 text-sm leading-7">{proj.desc}</p>
