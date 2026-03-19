@@ -286,88 +286,6 @@ function YTButton({ videoId, label }) {
 
 // ─── 전체 배경 파티클 네트워크 ────────────────────────────────────────────────
 
-function NetworkCanvas() {
-  const canvasRef = useRef(null)
-
-  useEffect(() => {
-    const canvas = canvasRef.current
-    const ctx = canvas.getContext('2d')
-    let animId
-
-    const resize = () => {
-      canvas.width  = window.innerWidth
-      canvas.height = window.innerHeight
-    }
-    resize()
-    window.addEventListener('resize', resize)
-
-    const COUNT    = 85
-    const MAX_DIST = 200
-    const SPEED    = 0.5
-
-    const nodes = Array.from({ length: COUNT }, () => ({
-      x:  Math.random() * canvas.width,
-      y:  Math.random() * canvas.height,
-      vx: (Math.random() - 0.5) * SPEED,
-      vy: (Math.random() - 0.5) * SPEED,
-      r:  Math.random() * 2 + 1.5,
-    }))
-
-    const draw = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height)
-
-      // 노드 이동 + 경계 반사
-      nodes.forEach(n => {
-        n.x += n.vx
-        n.y += n.vy
-        if (n.x < 0 || n.x > canvas.width)  n.vx *= -1
-        if (n.y < 0 || n.y > canvas.height) n.vy *= -1
-      })
-
-      // 연결선
-      for (let i = 0; i < COUNT; i++) {
-        for (let j = i + 1; j < COUNT; j++) {
-          const dx   = nodes[i].x - nodes[j].x
-          const dy   = nodes[i].y - nodes[j].y
-          const dist = Math.sqrt(dx * dx + dy * dy)
-          if (dist < MAX_DIST) {
-            const alpha = (1 - dist / MAX_DIST) * 0.18
-            ctx.beginPath()
-            ctx.moveTo(nodes[i].x, nodes[i].y)
-            ctx.lineTo(nodes[j].x, nodes[j].y)
-            ctx.strokeStyle = `rgba(255, 255, 255, ${alpha})`
-            ctx.lineWidth   = 1
-            ctx.stroke()
-          }
-        }
-      }
-
-      // 노드 점
-      nodes.forEach(n => {
-        ctx.beginPath()
-        ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2)
-        ctx.fillStyle = 'rgba(255, 255, 255, 0.2)'
-        ctx.fill()
-      })
-
-      animId = requestAnimationFrame(draw)
-    }
-    draw()
-
-    return () => {
-      cancelAnimationFrame(animId)
-      window.removeEventListener('resize', resize)
-    }
-  }, [])
-
-  return (
-    <canvas
-      ref={canvasRef}
-      className="absolute inset-0 w-full h-full pointer-events-none"
-      style={{ zIndex: 0 }}
-    />
-  )
-}
 
 // ─── 코드 파티클 캔버스 ────────────────────────────────────────────────────────
 
@@ -465,7 +383,6 @@ function Header({ activeSection, mobileMenuOpen, setMobileMenuOpen }) {
     <>
       {/* ── 상단 프로필 영역 ── */}
       <div className="relative bg-[#1e2d3d] text-white overflow-hidden">
-        <NetworkCanvas />
         <CodeParticleCanvas />
         <div className="relative z-10 max-w-4xl mx-auto px-6 py-14 text-center">
           {/* 아바타 */}
