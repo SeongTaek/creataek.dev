@@ -367,7 +367,6 @@ const SKILLS = [
   { category: 'Graphics',     items: ['DirectX', 'OpenGL'] },
   { category: 'Web',          items: ['HTML', 'Javascript'] },
   { category: 'Tools',        items: ['Visual Studio', 'Perforce', 'GitHub', 'SourceTree', 'SVN', 'TeamCity', 'Confluence', 'Jira', 'Cursor', 'Claude Code'] },
-  { category: 'Professional', items: ['Software Architecture', 'Encryption / Security', 'Automation Tools', 'Global Live Service'] },
 ]
 
 const AWARDS = [
