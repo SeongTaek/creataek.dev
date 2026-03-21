@@ -517,12 +517,16 @@ function Header({ activeSection, mobileMenuOpen, setMobileMenuOpen }) {
       {/* ── 상단 프로필 영역 ── */}
       <div className="bg-[#1e2d3d] text-white">
         <div className="max-w-4xl mx-auto px-4 md:px-6 py-10 md:py-14 text-center">
-          {/* 아바타 */}
+          {/* 프로필 사진 */}
           <div
-            className="w-20 h-20 md:w-24 md:h-24 rounded-full mx-auto mb-5 md:mb-6 flex items-center justify-center border-2 text-xs md:text-sm font-bold tracking-widest"
-            style={{ backgroundColor: `${ACCENT}25`, borderColor: `${ACCENT}60`, color: ACCENT }}
+            className="w-24 h-24 md:w-32 md:h-32 rounded-full mx-auto mb-5 md:mb-6 overflow-hidden border-2"
+            style={{ borderColor: `${ACCENT}60` }}
           >
-            Creataek
+            <img
+              src="/profile.jpg"
+              alt="임성택 프로필"
+              className="w-full h-full object-cover"
+            />
           </div>
 
           {/* 이름 */}
