@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Mail, Phone, Menu, X, ExternalLink, ChevronRight, Triangle, Box } from 'lucide-react'
 
@@ -334,87 +334,6 @@ function YTBanner({ videoId, label }) {
 // ─── 전체 배경 파티클 네트워크 ────────────────────────────────────────────────
 
 
-// ─── 코드 파티클 캔버스 ────────────────────────────────────────────────────────
-
-const CODE_SYMBOLS = [
-  '{}', '()', '[];', '=>', '//', '&&', '||', '!= 0',
-  'class', 'void', 'return', 'if()', 'for()', '::',
-  'nullptr', '#include', 'std::', 'int*', 'UClass',
-  'UFUNCTION()', '++i', 'bool', 'auto&', '<<', '>>',
-  'new T()', 'delete', 'const&', 'FVector', 'TArray<>',
-]
-
-function CodeParticleCanvas() {
-  const canvasRef = useRef(null)
-
-  useEffect(() => {
-    const canvas = canvasRef.current
-    const ctx = canvas.getContext('2d')
-    let animId
-
-    const resize = () => {
-      canvas.width  = canvas.offsetWidth
-      canvas.height = canvas.offsetHeight
-    }
-    resize()
-    window.addEventListener('resize', resize)
-
-    // 파티클 초기화
-    const count = 38
-    const particles = Array.from({ length: count }, () => ({
-      x:      Math.random() * canvas.width,
-      y:      Math.random() * canvas.height,
-      vx:     (Math.random() - 0.5) * 0.3,
-      vy:     -Math.random() * 0.4 - 0.1,
-      alpha:  Math.random() * 0.45 + 0.2,
-      size:   Math.random() * 4 + 12,
-      symbol: CODE_SYMBOLS[Math.floor(Math.random() * CODE_SYMBOLS.length)],
-      phase:  Math.random() * Math.PI * 2,     // 깜빡임 위상
-      speed:  Math.random() * 0.008 + 0.004,   // 깜빡임 속도
-    }))
-
-    const draw = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height)
-
-      particles.forEach(p => {
-        // 위치 업데이트
-        p.x += p.vx
-        p.y += p.vy
-        p.phase += p.speed
-
-        // 화면 밖으로 나가면 반대편에서 재등장
-        if (p.y < -20)          p.y = canvas.height + 20
-        if (p.x < -60)          p.x = canvas.width + 60
-        if (p.x > canvas.width + 60)  p.x = -60
-
-        // 사인파로 opacity 부드럽게 변화
-        const alpha = p.alpha * (0.5 + 0.5 * Math.sin(p.phase))
-
-        ctx.save()
-        ctx.font = `${p.size}px "JetBrains Mono", "Fira Code", monospace`
-        ctx.fillStyle = `rgba(160, 210, 240, ${alpha})`
-        ctx.fillText(p.symbol, p.x, p.y)
-        ctx.restore()
-      })
-
-      animId = requestAnimationFrame(draw)
-    }
-    draw()
-
-    return () => {
-      cancelAnimationFrame(animId)
-      window.removeEventListener('resize', resize)
-    }
-  }, [])
-
-  return (
-    <canvas
-      ref={canvasRef}
-      className="absolute inset-0 w-full h-full pointer-events-none"
-    />
-  )
-}
-
 // ─── 상단 헤더 (프로필 + 네비게이션) ──────────────────────────────────────────
 
 function Header({ activeSection, mobileMenuOpen, setMobileMenuOpen }) {
@@ -429,9 +348,8 @@ function Header({ activeSection, mobileMenuOpen, setMobileMenuOpen }) {
   return (
     <>
       {/* ── 상단 프로필 영역 ── */}
-      <div className="relative bg-[#1e2d3d] text-white overflow-hidden">
-        <CodeParticleCanvas />
-        <div className="relative z-10 max-w-4xl mx-auto px-4 md:px-6 py-10 md:py-14 text-center">
+      <div className="bg-[#1e2d3d] text-white">
+        <div className="max-w-4xl mx-auto px-4 md:px-6 py-10 md:py-14 text-center">
           {/* 아바타 */}
           <div
             className="w-20 h-20 md:w-24 md:h-24 rounded-full mx-auto mb-5 md:mb-6 flex items-center justify-center border-2 text-xs md:text-sm font-bold tracking-widest"
@@ -570,10 +488,10 @@ function About() {
         <motion.p variants={fadeUp} className="text-gray-700 text-sm leading-8">
           2017년부터{' '}
           <span className="font-semibold" style={{ color: ACCENT }}>언리얼과 유니티</span>를 아우르며 모바일 및 PC 글로벌 서비스를 개발해 왔습니다.
-          닌텐도 '닥터 마리오 월드' 초기 빌드업부터{' '}
-          <span className="font-semibold" style={{ color: ACCENT }}>'로스트아크' 5년 라이브 서비스</span>까지 참여하며,
-          콘텐츠 개발과{' '}
-          <span className="font-semibold" style={{ color: ACCENT }}>로우 레벨 기반의 시스템 설계·분석</span>을 통해 대규모 서비스의 안정성을 확보하는 데 집중했습니다.
+          <span className="font-semibold" style={{ color: ACCENT }}>닌텐도 '닥터 마리오 월드' 초기 빌드업</span>부터{' '}
+          <span className="font-semibold" style={{ color: ACCENT }}>'로스트아크' 5년 라이브 서비스</span>까지 참여하며 글로벌 라이브 서비스 경험을 쌓았습니다.
+          또한 다양한 콘텐츠 개발과{' '}
+          <span className="font-semibold" style={{ color: ACCENT }}>로우 레벨 기반의 시스템 설계·개선</span>을 통해 안정적인 글로벌 서비스 환경을 확보했습니다.
         </motion.p>
         <motion.p variants={fadeUp} className="text-gray-700 text-sm leading-8">
           단순 기능 구현에 그치지 않고,{' '}
