@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Mail, Phone, Menu, X, ExternalLink, ChevronRight, Triangle, Box } from 'lucide-react'
 
@@ -115,6 +115,7 @@ const PERSONAL_WORK = [
     accent: '#4a6aaa',
     projects: [
       {
+        id: 'the-way',
         title: 'The Way',
         period: '2021.03 ~ 2021.05',
         engine: 'unreal',
@@ -129,6 +130,7 @@ const PERSONAL_WORK = [
     accent: '#4a8a62',
     projects: [
       {
+        id: 'snakes-server',
         title: 'Snakes-Server',
         period: '2017.04 ~ 2017.05',
         engine: 'unity',
@@ -143,6 +145,7 @@ const PERSONAL_WORK = [
     accent: '#9a6a38',
     projects: [
       {
+        id: 'loalto',
         title: 'LoAlto',
         period: '2016.03 ~ 2016.11',
         engine: 'unity',
@@ -151,6 +154,7 @@ const PERSONAL_WORK = [
         tags: ['C#', 'Swarm AI', 'Network', 'FSM'],
       },
       {
+        id: 'wip-simulation',
         title: 'WIP Simulation',
         period: '2016.09 ~ 2016.11',
         videoId: 'ocQsljHpRFo',
@@ -164,6 +168,7 @@ const PERSONAL_WORK = [
     accent: '#6a5a9a',
     projects: [
       {
+        id: 'knighthood',
         title: '그녀의 기사단',
         period: '2013.03 ~ 2014.02',
         videoId: 'agg7GCNxjPM',
@@ -171,6 +176,7 @@ const PERSONAL_WORK = [
         tags: ['C++', 'NDK', 'OpenGL', 'Cross Platform', 'Script Engine'],
       },
       {
+        id: 'ck4d',
         title: 'CK4D',
         period: '2012.09 ~ 2014.02',
         videoId: 'LSXz3bLEXuA',
@@ -184,6 +190,7 @@ const PERSONAL_WORK = [
     accent: '#2a8a84',
     projects: [
       {
+        id: 'booster-rooster',
         title: '부스터 루스터',
         period: '2012.01 ~ 2012.06',
         videoId: 'LY5H2swNct8',
@@ -193,6 +200,166 @@ const PERSONAL_WORK = [
     ],
   },
 ]
+
+const PERSONAL_WORK_DETAILS = {
+  'the-way': {
+    title: 'The Way',
+    period: '2021.03 ~ 2021.05',
+    videoId: 'vusiw_7MrlU',
+    engine: 'unreal',
+    tags: ['C++', 'Behavior Tree', 'Shader'],
+    accent: '#4a6aaa',
+    overview: '언리얼 엔진 4의 내부 프레임워크와 그래픽스 파이프라인을 직접 탐구하기 위해 진행한 프로젝트입니다. 단순한 기능 사용에 그치지 않고 엔진의 동작 원리를 이해하는 것을 목표로 했으며, Behavior Tree 기반 AI와 셰이더 연출 시스템을 직접 설계·구현했습니다.',
+    sections: [
+      {
+        title: 'Behavior Tree 기반 AI 설계',
+        content: 'UE4의 Behavior Tree를 활용해 지능적으로 상호작용하는 AI를 설계했습니다. 조건 노드와 행동 노드를 계층적으로 구성해 상황에 따라 유연하게 반응하는 NPC 행동 패턴을 구현했으며, Blackboard를 통한 상태 공유로 복잡한 판단 흐름을 명확하게 정리했습니다.',
+      },
+      {
+        title: 'Material Function 기반 셰이더 연출',
+        content: 'Material Function을 활용해 재사용 가능한 셰이더 모듈을 설계하고, 복잡한 시각 연출을 효율적으로 구성했습니다. 연출 데이터를 외부에서 주입하는 데이터 드리븐 방식으로 셰이더 파라미터를 관리해 콘텐츠 변경 시 코드 수정 없이 연출을 조정할 수 있도록 구조화했습니다.',
+      },
+    ],
+  },
+  'snakes-server': {
+    title: 'Snakes-Server',
+    period: '2017.04 ~ 2017.05',
+    videoId: 'eDaiPUnFo5g',
+    engine: 'unity',
+    tags: ['C++', 'IOCP', 'Network', 'Server'],
+    accent: '#4a8a62',
+    overview: '고성능 서버 아키텍처의 핵심 원리를 직접 구현하며 이해하기 위해 진행한 프로젝트입니다. 비동기 I/O 모델과 메모리 최적화 기법을 적용해 다수의 동시 접속을 안정적으로 처리하는 멀티플레이 서버 환경을 구축했습니다.',
+    sections: [
+      {
+        title: 'IOCP 비동기 서버',
+        content: 'Windows IOCP(I/O Completion Port) 모델을 직접 구현해 비동기 네트워크 I/O를 처리했습니다. 스레드 풀과 결합하여 다수의 클라이언트 요청을 효율적으로 분배하는 구조를 설계했으며, 블로킹 없이 대량의 동시 접속을 처리할 수 있는 기반을 마련했습니다.',
+      },
+      {
+        title: 'TCP/UDP 혼합 통신',
+        content: '신뢰성이 요구되는 데이터는 TCP로, 실시간성이 중요한 데이터는 UDP로 처리하는 혼합 통신 구조를 구현했습니다. 게임 데이터 특성에 맞게 프로토콜을 분리함으로써 안정적인 상태 동기화와 빠른 위치 업데이트를 동시에 달성했습니다.',
+      },
+      {
+        title: '메모리 최적화',
+        content: '메모리 풀(Memory Pool)을 직접 구현해 빈번한 동적 할당에 따른 오버헤드를 제거했습니다. 원형 큐(Circular Queue)를 활용한 패킷 버퍼 관리로 데이터 처리 효율을 높이고, 메모리 단편화 없이 안정적인 패킷 송수신 환경을 확보했습니다.',
+      },
+    ],
+  },
+  'loalto': {
+    title: 'LoAlto',
+    period: '2016.03 ~ 2016.11',
+    videoId: 'G69-5JAAZvM',
+    engine: 'unity',
+    tags: ['C#', 'Swarm AI', 'Network', 'FSM'],
+    accent: '#9a6a38',
+    overview: '프로그래머 3인·기획자 3인·그래픽 8인, 총 14인 팀의 졸업작품입니다. 저항군이 점령한 탑을 탈환하는 2인 협동 네트워크 TPS 게임으로, 몬스터 AI 설계와 포위 시스템 개발을 담당했습니다.',
+    sections: [
+      {
+        title: 'FSM 기반 네트워크 AI 동기화',
+        content: '두 클라이언트 간 AI 상태를 일관되게 유지하기 위해 FSM(Finite State Machine) 기반 네트워크 동기화 구조를 설계했습니다. 방장 클라이언트만이 상태 전이 조건을 검사하며, 전이 조건 발동 시 즉시 행동하지 않고 서버로 상태 변경 패킷을 전송합니다. 이후 서버에서 양쪽 클라이언트에 동시 전달되면 그때 상태를 전이해 두 클라이언트의 AI 행동이 항상 동기화되도록 구현했습니다.',
+      },
+      {
+        title: '드론 AI — 군집 비행 및 장애물 회피',
+        content: '부엉이 크리처가 적군을 감지하면 공격용 드론을 생산합니다. 드론은 지정된 지점을 선회하며 공격 범위 내 적을 공격하는 동시에, 선회 중 주변 오브젝트와의 충돌을 방지하기 위해 다방향 Ray를 발사해 환경을 감지합니다. 장애물이 탐지되면 속도를 줄이며 회피 방향으로 방향벡터를 전환하는 동적 회피 시스템을 구현했습니다.',
+      },
+      {
+        title: '포위 AI 시스템 (Siege System)',
+        content: '병사들이 플레이어를 발견하면 자동으로 포위 진형을 구성하는 군집 AI 시스템입니다. 타겟 기준 8방향 Ray를 발사해 주변 지형 정보를 수집하고, 가중치 기반 알고리즘으로 최적의 포위 방향을 계산합니다. 병사 종류(방패병·일반병)에 따라 포위 거리와 그룹이 분리되며, 동일 방향의 병사들을 포위 그룹으로 동적으로 묶어 대장 중심의 원형 진형을 형성합니다. 플레이어 이동에 따라 매 순간 포위 방향을 재계산해 끊임없이 갱신되는 포위 구조를 구현했습니다.',
+      },
+    ],
+  },
+  'wip-simulation': {
+    title: 'WIP Simulation',
+    period: '2016.09 ~ 2016.11',
+    videoId: 'ocQsljHpRFo',
+    engine: null,
+    tags: ['C++', 'DirectX9', 'Physics Engine', 'GJK/EPA'],
+    accent: '#9a6a38',
+    overview: 'Unity3D·Unreal 등 상용 엔진이 제공하는 물리 기능이 실제로 어떻게 구현되는지 직접 탐구하기 위해 진행한 프로젝트입니다. 강체 역학 시뮬레이션을 목표로, Unity3D의 컴포넌트 기반 설계를 참고해 아키텍처를 직접 구성하고 충돌 감지와 물리 연산을 구현했습니다.',
+    sections: [
+      {
+        title: '컴포넌트 기반 아키텍처',
+        content: 'Base 컴포넌트를 상속해 나머지 컴포넌트를 확장하는 구조를 설계했습니다. 게임 오브젝트는 컴포넌트 테이블을 보유하며, 필요한 컴포넌트만 조합해 Plane, Sphere, Cube 등 다양한 오브젝트를 구성할 수 있습니다. Unity3D 엔진의 컴포넌트 시스템을 참고해 유연하고 확장 가능한 구조로 설계했습니다.',
+      },
+      {
+        title: '커스텀 RTTI 시스템',
+        content: '컴포넌트를 식별하고 관리하기 위한 커스텀 RTTI(Run-Time Type Identification) 시스템을 구현했습니다. DeclareRTTI / ImplementRTTI 매크로로 각 컴포넌트에 식별자·상속 정보·유일성(unique) 여부를 부여합니다. unique 컴포넌트는 부모 계층을 탐색해 최상위 타입 이름으로 등록되며, 상속 관계에 무관하게 오브젝트당 하나만 존재하도록 보장합니다.',
+      },
+      {
+        title: 'GJK 충돌 감지',
+        content: '민코프스키 차(Minkowski Difference)를 기반으로 두 도형 간의 충돌 여부를 판단하는 GJK(Gilbert–Johnson–Keerthi) 알고리즘을 구현했습니다. 두 도형의 민코프스키 차로 구성된 사면체(Simplex)가 원점을 포함하면 충돌로 판정합니다. GJKSimplexUpdate 함수에서 사면체 내 원점 포함 여부를 반복 검사하며 정밀한 충돌 감지를 수행합니다.',
+      },
+      {
+        title: 'EPA 충돌 정보 계산',
+        content: 'GJK로 충돌 여부를 확인한 후, EPA(Expanding Polytope Algorithm)를 통해 충돌 깊이와 방향을 계산합니다. GJK에서 생성된 폴리토프를 시작점으로 민코프스키 차 내에서 도형을 점진적으로 확장하며 원점에 가장 가까운 면을 탐색합니다. 탐색된 면과 원점 간의 거리와 방향이 최종 충돌 깊이와 충돌 방향 벡터가 됩니다.',
+      },
+    ],
+  },
+  'knighthood': {
+    title: '그녀의 기사단',
+    period: '2013.03 ~ 2014.02',
+    videoId: 'agg7GCNxjPM',
+    engine: null,
+    tags: ['C++', 'NDK', 'OpenGL', 'Cross Platform', 'Script Engine'],
+    accent: '#6a5a9a',
+    overview: '별바람 스튜디오에서 2인이 진행한 모바일 게임 프로젝트입니다. Android와 iOS를 동시에 지원하기 위해 NDK 기반 C++ 코어 로직을 공유하는 구조를 설계했으며, CK4D 저작 도구로 제작한 모션 데이터를 게임에 직접 적용했습니다.',
+    sections: [
+      {
+        title: '크로스 플랫폼 NDK 구조',
+        content: 'Android와 iOS 양 플랫폼을 하나의 C++ 코드베이스로 지원하기 위해 NDK 크로스 플랫폼 환경을 구축했습니다. 플랫폼 종속적인 부분을 추상 레이어로 분리하고, OpenGL 기반 렌더링 파이프라인을 공유함으로써 코드 중복을 최소화하고 유지보수성을 확보했습니다.',
+      },
+      {
+        title: '커스텀 스크립트 시스템',
+        content: '게임 이벤트를 엔진 수정 없이 외부에서 정의하고 제어하기 위해 세 종류의 스크립트 시스템을 설계했습니다. 캐릭터 스크립트와 데이터 스크립트는 문자열 파싱으로 값을 주입하며, 액션 스크립트는 조건문·변수 선언·명령어 중첩을 지원하는 커스텀 파서를 통해 복잡한 게임 이벤트 흐름을 외부 텍스트 파일로 완전히 제어할 수 있도록 구현했습니다.',
+      },
+      {
+        title: 'CK4D 모션 연동',
+        content: 'CK4D 저작 도구에서 생성한 .stnr / .anr 파일을 런타임에 파싱해 캐릭터 애니메이션을 재생합니다. 프레임 간 보간 처리를 통해 부드러운 모션을 구현했으며, 스프링 물리가 적용된 레이어는 로컬 축의 움직임에 따라 실시간으로 반응하도록 연동했습니다.',
+      },
+    ],
+  },
+  'ck4d': {
+    title: 'CK4D',
+    period: '2012.09 ~ 2014.02',
+    videoId: 'LSXz3bLEXuA',
+    engine: null,
+    tags: ['C++', 'OpenGL', 'MFC', 'Animation Engine', 'Tool'],
+    accent: '#6a5a9a',
+    overview: '별바람 스튜디오에서 2인이 개발한 2D 애니메이션 저작 도구입니다. 스프라이트·일러스트 등 2D 이미지를 레이어 단위로 편집하고 물리 기반 모션을 제작할 수 있으며, 제작된 데이터는 그녀의 기사단 개발에 실제로 사용되었습니다.',
+    sections: [
+      {
+        title: '레이어 시스템',
+        content: '이미지 하나를 다수의 정점으로 구성된 레이어로 표현하며, 각 정점의 위치와 UV 좌표를 독립적으로 편집할 수 있습니다. 옷자락·머리카락 등 유동적인 부위에는 스프링 물리를 적용해 모션 재생 시 로컬 축의 움직임에 반응하는 자연스러운 표현을 구현했습니다.',
+      },
+      {
+        title: '모션 시스템',
+        content: '모션–프레임–레이어의 3계층 구조로 애니메이션을 관리합니다. 레이어를 조작해 순간의 장면인 프레임을 구성하고, 프레임들을 시간 순서에 따라 조합해 공격·대기·이동 등 하나의 완성된 모션을 만듭니다. 프레임 간 보간 처리로 부드럽고 자연스러운 재생을 지원합니다.',
+      },
+      {
+        title: 'stnr / anr 파일 포맷 설계',
+        content: 'stnr 파일에는 모션–프레임–레이어 계층 구조의 모션 데이터를 저장합니다. anr 파일은 아틀라스(1024×1024) 기반으로 이미지 데이터를 관리하며, 용량 초과 시 아틀라스를 추가 생성하는 방식으로 확장됩니다. 두 파일 포맷을 분리해 모션 데이터와 이미지 데이터를 독립적으로 관리할 수 있도록 설계했습니다.',
+      },
+    ],
+  },
+  'booster-rooster': {
+    title: '부스터 루스터',
+    period: '2012.01 ~ 2012.06',
+    videoId: 'LY5H2swNct8',
+    engine: null,
+    tags: ['JavaScript', 'HTML5', 'Canvas', 'Optimization'],
+    accent: '#2a8a84',
+    overview: '프로그래머·기획자·그래픽 3인 팀으로 개발한 HTML5 기반 모바일 캐주얼 게임입니다. 플랫폼에 구애받지 않는 웹 환경의 특성을 활용해 WAC 프로젝트에 참가하여 개발했으며, HTML5 Canvas API로 렌더링 루프를 구성하고 JavaScript로 게임 로직 전반을 구현했습니다.',
+    sections: [
+      {
+        title: 'JavaScript OOP 아키텍처',
+        content: 'C++ 기반의 클래스·상속 패턴을 JavaScript 환경에서 재현하기 위해 함수를 클래스 단위로 활용하고, 프로토타입 체인으로 상속을 구현했습니다. 공통 오브젝트 클래스를 기반으로 다양한 게임 오브젝트를 상속 구조로 확장해 일관된 코드 설계를 유지했습니다.',
+      },
+      {
+        title: '모바일 환경 최적화',
+        content: '웹 기반 게임을 저사양 스마트폰에서도 원활히 구동하기 위해 렌더링 최적화에 집중했습니다. 화면 영역 밖의 오브젝트는 드로우콜 대상에서 제외하는 컬링을 적용하고, 블록 단위 변수에 대한 중복 접근을 방지하기 위해 블록 진입 시 변수를 사전에 캐싱하는 방식으로 불필요한 연산을 최소화했습니다.',
+      },
+    ],
+  },
+}
 
 const SKILLS = [
   { category: 'Languages',    items: ['C++', 'C#'] },
@@ -756,7 +923,7 @@ function sortTags(tags) {
   return [...langs, ...rest]
 }
 
-function PersonalWork() {
+function PersonalWork({ onSelect }) {
   const headerColor = '#1e293b'
   return (
     <Section id="personal">
@@ -809,6 +976,13 @@ function PersonalWork() {
                           <div className="shrink-0 w-0.5 rounded-full mt-1 self-stretch min-h-[1rem]" style={{ backgroundColor: group.accent }} />
                           <p className="text-gray-700 text-sm leading-7">{proj.desc}</p>
                         </div>
+                        <button
+                          onClick={() => onSelect(proj.id)}
+                          className="mt-4 flex items-center gap-1.5 text-xs font-semibold transition-colors hover:opacity-70"
+                          style={{ color: group.accent }}
+                        >
+                          자세히 보기 <ChevronRight size={12} />
+                        </button>
                       </div>
                     ))}
                   </div>
@@ -819,6 +993,78 @@ function PersonalWork() {
         </div>
       </motion.div>
     </Section>
+  )
+}
+
+function ProjectDetailPage({ projectId, onBack }) {
+  const detail = PERSONAL_WORK_DETAILS[projectId]
+  if (!detail) return null
+  const accent = detail.accent
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 24 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: 24 }}
+      transition={{ duration: 0.3, ease: 'easeOut' }}
+      className="max-w-4xl mx-auto px-3 md:px-6 py-4 md:py-8"
+    >
+      {/* 뒤로 가기 */}
+      <button
+        onClick={onBack}
+        className="flex items-center gap-2 text-sm text-gray-500 hover:text-gray-800 transition-colors mb-6 group"
+      >
+        <ChevronRight size={14} className="rotate-180 group-hover:-translate-x-0.5 transition-transform" />
+        Personal Work
+      </button>
+
+      {/* 프로젝트 헤더 카드 */}
+      <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-4 md:p-8 mb-4 md:mb-6">
+        <div className="flex items-center gap-2 mb-1">
+          <div className="w-2 h-2 rounded-full" style={{ backgroundColor: accent }} />
+          <span className="text-[11px] font-bold tracking-[0.15em] uppercase" style={{ color: accent }}>Personal Project</span>
+        </div>
+        <h1 className="text-2xl md:text-3xl font-black tracking-tight text-[#1a1a1a] mt-2">{detail.title}</h1>
+        {detail.engine && (
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5 mt-2 text-xs text-gray-500">
+            <EngineIcon engine={detail.engine} />
+          </div>
+        )}
+        <div className="flex flex-wrap gap-1.5 mt-3">
+          {sortTags(detail.tags).map(tag => (
+            <span key={tag} className={`px-2 py-0.5 text-[11px] font-semibold rounded border ${TAG_COLOR_MAP[tag] ?? TAG_COLOR_DEFAULT}`}>
+              {tag}
+            </span>
+          ))}
+        </div>
+
+        {detail.videoId && (
+          <div className="mt-5">
+            <YTBanner videoId={detail.videoId} label={`${detail.title} — YouTube`} />
+          </div>
+        )}
+
+        {/* 개요 */}
+        <div className="flex gap-4 mt-6">
+          <div className="shrink-0 w-0.5 rounded-full self-stretch min-h-[1rem]" style={{ backgroundColor: accent }} />
+          <p className="text-gray-700 text-sm leading-7">{detail.overview}</p>
+        </div>
+      </div>
+
+      {/* 섹션들 */}
+      <div className="space-y-4 md:space-y-6">
+        {detail.sections.map((section, i) => (
+          <div key={i} className="bg-white rounded-xl shadow-sm border border-gray-100 p-4 md:p-8">
+            <h2 className="text-base font-bold text-[#1a1a1a] tracking-tight mb-4"
+              style={{ borderLeft: `3px solid ${accent}`, paddingLeft: '0.75rem' }}
+            >
+              {section.title}
+            </h2>
+            <p className="text-gray-700 text-sm leading-7">{section.content}</p>
+          </div>
+        ))}
+      </div>
+    </motion.div>
   )
 }
 
@@ -986,9 +1232,47 @@ function Awards() {
 
 // ─── App ───────────────────────────────────────────────────────────────────────
 
+function getProjectFromURL() {
+  return new URLSearchParams(window.location.search).get('project')
+}
+
 export default function App() {
   const [activeSection, setActiveSection]   = useState('about')
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [selectedProject, setSelectedProject] = useState(getProjectFromURL)
+  const savedScrollY = useRef(0)
+
+  // URL → state 동기화 (브라우저 뒤로/앞으로 가기)
+  useEffect(() => {
+    const onPopState = (e) => {
+      const project = getProjectFromURL()
+      if (!project && e.state?.scrollY != null) {
+        savedScrollY.current = e.state.scrollY
+      }
+      setSelectedProject(project)
+    }
+    window.addEventListener('popstate', onPopState)
+    return () => window.removeEventListener('popstate', onPopState)
+  }, [])
+
+  const selectProject = (id) => {
+    // 현재 메인 페이지 entry에 스크롤 위치 저장
+    window.history.replaceState({ ...window.history.state, scrollY: window.scrollY }, '')
+    // 상세 페이지로 push (fromApp 플래그로 앱 내 이동 여부 표시)
+    window.history.pushState({ project: id, fromApp: true }, '', `?project=${id}`)
+    setSelectedProject(id)
+  }
+
+  const goBack = () => {
+    if (window.history.state?.fromApp) {
+      // 앱 내에서 pushState로 이동했던 경우 → 안전하게 back()
+      window.history.back()
+    } else {
+      // 직접 URL 접근 등 히스토리가 없는 경우 → 수동으로 메인 복귀
+      window.history.replaceState(null, '', '/')
+      setSelectedProject(null)
+    }
+  }
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -1012,17 +1296,40 @@ export default function App() {
         setMobileMenuOpen={setMobileMenuOpen}
       />
 
-      <main className="max-w-4xl mx-auto px-3 md:px-6 py-4 md:py-8">
-        <About />
-        <WorkExperience />
-        <Activities />
-        <Skills />
-        <PersonalWork />
-        <Awards />
-        <footer className="text-center py-6">
-          <p className="text-gray-400 text-xs">© 2026 Seong-taek Lim · Game Client Developer</p>
-        </footer>
-      </main>
+      <AnimatePresence mode="wait">
+        {selectedProject ? (
+          <ProjectDetailPage
+            key="detail"
+            projectId={selectedProject}
+            onBack={goBack}
+          />
+        ) : (
+          <motion.main
+            key="main"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            onAnimationComplete={() => {
+              if (savedScrollY.current > 0) {
+                window.scrollTo({ top: savedScrollY.current, behavior: 'smooth' })
+                savedScrollY.current = 0
+              }
+            }}
+            className="max-w-4xl mx-auto px-3 md:px-6 py-4 md:py-8"
+          >
+            <About />
+            <WorkExperience />
+            <Activities />
+            <Skills />
+            <PersonalWork onSelect={selectProject} />
+            <Awards />
+            <footer className="text-center py-6">
+              <p className="text-gray-400 text-xs">© 2026 Seong-taek Lim · Game Client Developer</p>
+            </footer>
+          </motion.main>
+        )}
+      </AnimatePresence>
     </div>
   )
 }
