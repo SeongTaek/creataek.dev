@@ -13,7 +13,7 @@ const NAV_ITEMS = [
   { id: 'activities', label: 'Activities' },
 ]
 
-const TECH_BADGES = ['C++', 'C#', 'Unreal', 'Unity', 'Perforce', 'Git', 'SVN', 'TeamCity']
+const TECH_BADGES = ['C++', 'C#', 'Unreal Engine', 'Unity', 'DirectX', 'OpenGL', 'Perforce', 'GitHub', 'SVN', 'TeamCity', 'Confluence', 'Jira', 'Cursor', 'Claude Code']
 
 const LOST_ARK_CONTRIBUTIONS = [
   {
