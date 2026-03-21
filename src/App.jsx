@@ -54,10 +54,12 @@ const NHN_ITEMS = [
       {
         label: '무기 시스템 아키텍처',
         text: '능력치 설정에 따라 무기의 동작이 변화하는 무기 시스템 아키텍처를 설계하여 게임 플레이의 기획적 자유도를 높였습니다.',
+        highlights: ['무기 시스템 아키텍처를 설계'],
       },
       {
         label: 'UMG 기반 콘텐츠 개발',
         text: 'UMG를 기반으로 인게임 콘텐츠 요소들을 개발하여 사용자 인터페이스의 완성도를 높였습니다.',
+        highlights: ['UMG를 기반으로 인게임 콘텐츠 요소들을 개발'],
       },
     ],
   },
@@ -72,14 +74,17 @@ const NHN_ITEMS = [
       {
         label: '기믹 블록 시스템',
         text: '글로벌 런칭 프로젝트로서, 객체지향 프로그래밍의 추상화와 상속 구조를 적극 활용해 독립적으로 동작하는 35종의 고유 기믹 블록 시스템을 구축했습니다. 이를 통해 라이브 서비스 중에도 신속한 업데이트와 효율적인 유지보수가 가능한 기반을 마련했습니다.',
+        highlights: ['35종의 고유 기믹 블록 시스템을 구축'],
       },
       {
         label: 'UGUI 기반 콘텐츠 개발',
         text: '다양한 인게임 요소들을 UGUI 시스템 내에 효율적으로 구조화하여, 인터페이스의 시각적 완성도와 콘텐츠 서비스의 안정성을 확보했습니다.',
+        highlights: ['UGUI 시스템 내에 효율적으로 구조화'],
       },
       {
         label: '전용 레벨 에디터',
         text: '기획자가 직접 맵을 제작하고 즉시 시뮬레이션할 수 있는 WinForms 기반 전용 레벨 에디터를 개발하여 레벨 디자인 공정의 생산성을 획기적으로 제고했습니다.',
+        highlights: ['WinForms 기반 전용 레벨 에디터를 개발'],
       },
     ],
   },
@@ -93,10 +98,12 @@ const NHN_ITEMS = [
       {
         label: 'MVC 기반 UI 시스템',
         text: "자체 MVC 프레임워크인 'Taco'를 활용하여 대규모 데이터 기반의 스포츠 UI 시스템을 개발했습니다.",
+        highlights: ["'Taco'를 활용하여 대규모 데이터 기반의 스포츠 UI 시스템을 개발"],
       },
       {
         label: '2D 실시간 중계 시스템',
         text: 'JSON 스키마 설계를 통해 실시간 경기 데이터를 2D 경기 중계 시뮬레이션으로 시각화하는 시스템을 구축했습니다.',
+        highlights: ['실시간 경기 데이터를 2D 경기 중계 시뮬레이션으로 시각화'],
       },
     ],
   },
@@ -192,7 +199,7 @@ const SKILLS = [
   { category: 'Game Engines', items: ['Unreal Engine', 'Unity'] },
   { category: 'Graphics',     items: ['DirectX', 'OpenGL'] },
   { category: 'Web',          items: ['HTML', 'Javascript'] },
-  { category: 'Tools',        items: ['Visual Studio', 'Perforce', 'GitHub', 'SourceTree', 'SVN', 'TeamCity', 'Cursor', 'Claude Code'] },
+  { category: 'Tools',        items: ['Visual Studio', 'Perforce', 'GitHub', 'SourceTree', 'SVN', 'TeamCity', 'Confluence', 'Jira', 'Cursor', 'Claude Code'] },
   { category: 'Professional', items: ['Software Architecture', 'Encryption / Security', 'Automation Tools', 'Global Live Service'] },
 ]
 
