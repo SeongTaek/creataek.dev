@@ -17,24 +17,29 @@ const TECH_BADGES = ['C++', 'C#', 'Unreal', 'Unity', 'Perforce', 'Git', 'SVN', '
 
 const LOST_ARK_CONTRIBUTIONS = [
   {
-    label: '보안 및 데이터 아키텍처',
-    text: '리버스 엔지니어링을 통한 리소스 노출 및 변조 리스크를 차단하기 위해 클라이언트 사이드 DB 암/복호화 보안 시스템을 설계 및 구축했습니다. 이를 통해 게임의 핵심 데이터를 보호하고 서비스 보안성을 강화했습니다.',
+    label: '핵심 시스템 및 콘텐츠',
+    text: "로스트아크의 주요 성장 시스템인 '초월' 콘텐츠의 클라이언트 아키텍처를 설계하고, 복잡한 연출 로직 최적화로 콘텐츠의 안정적 출시를 이끌었습니다. 또한 커스터마이징, IME(입력기), 웹 연동 등 필수 시스템의 유지보수 및 고도화를 통해 라이브 서비스의 품질을 지속적으로 관리해 왔습니다.",
+    highlights: ["'초월' 콘텐츠의 클라이언트 아키텍처를 설계"],
   },
   {
-    label: '인프라 대응 및 구조 분리',
-    text: '대규모 신규 유입 대응을 위한 점프 서버 도입 시 기존 DB 구조의 한계를 해결하고자 클라이언트 DB를 독립적인 논리 계층으로 분리하고 데이터 마이그레이션을 수행하여, 서버 구조 변경에 유연하게 대응할 수 있는 아키텍처를 확보하고 서비스의 안정성을 유지했습니다. 또한 STOVE 플랫폼 연동 API 고도화와 서비스 전반의 안정화를 개선해 왔습니다.',
+    label: '보안 및 데이터 아키텍처',
+    text: '리버스 엔지니어링을 통한 리소스 노출 및 변조 리스크를 방어하기 위해 클라이언트 사이드 DB 암/복호화 보안 시스템을 설계 및 구축했습니다. 이를 통해 핵심 데이터를 보호하고 게임 전반의 서비스 보안성을 강화했습니다.',
+    highlights: ['클라이언트 사이드 DB 암/복호화 보안 시스템을 설계 및 구축'],
+  },
+  {
+    label: '데이터 레이어 분리 및 플랫폼 고도화',
+    text: "대규모 신규 유입 대응을 위한 '점프 서버' 도입 시, 기존 DB 구조의 한계를 해결하고자 클라이언트 DB를 독립적인 논리 계층으로 분리했습니다. 데이터 마이그레이션을 안정적으로 수행하여 서버 구조 변경에 유연하게 대응할 수 있는 아키텍처를 확보했으며, STOVE 플랫폼 API 고도화를 통해 서비스 전반을 안정화했습니다.",
+    highlights: ['클라이언트 DB를 독립적인 논리 계층으로 분리', 'STOVE 플랫폼 API 고도화'],
   },
   {
     label: '공정 자동화 및 협업 개선',
-    text: '인게임 연출에 따른 가변 애니메이션 커서 시스템을 설계하고 리소스 파이프라인을 자동화로 대체함으로써, 수동 작업 비용을 제거하고 아트 및 개발 팀 간의 협업 생산성을 향상시켰습니다.',
+    text: '인게임 연출과 연동되는 가변 애니메이션 커서 시스템을 설계하고, 반복적인 리소스 파이프라인을 자동화로 대체했습니다. 이를 통해 수동 작업 비용을 제거하고 아트 및 개발 팀 간의 실질적인 협업 생산성을 높였습니다.',
+    highlights: ['리소스 파이프라인을 자동화'],
   },
   {
-    label: '글로벌 서비스 최적화',
+    label: '글로벌 서비스 고도화',
     text: '전 세계 유저 동향 파악을 위해 QA 전용 다국어 로컬라이제이션 아키텍처를 설계하여, 다국어 환경의 텍스트 예외 상황을 사전에 검증할 수 있는 안정적인 테스트 기반을 마련했습니다.',
-  },
-  {
-    label: '핵심 시스템 및 콘텐츠',
-    text: "로스트아크의 주요 성장 시스템인 '초월' 컨텐츠의 클라이언트 아키텍처를 설계하고 복잡한 연출 로직을 최적화하여 고퀄리티 콘텐츠 출시를 이끌었습니다. 아울러 인/아웃게임을 아우르는 커스터마이징, IME(입력기), 웹 연동 등 필수 시스템의 유지보수 및 기능 고도화를 수행하며 라이브 환경에서의 안정적인 서비스 퀄리티를 지속적으로 향상해 왔습니다.",
+    highlights: ['QA 전용 다국어 로컬라이제이션 아키텍처를 설계'],
   },
 ]
 
@@ -181,7 +186,9 @@ const PERSONAL_WORK = [
 const SKILLS = [
   { category: 'Languages',    items: ['C++', 'C#'] },
   { category: 'Game Engines', items: ['Unreal Engine', 'Unity'] },
-  { category: 'Tools',        items: ['Visual Studio', 'Perforce', 'GitHub', 'SourceTree', 'SVN', 'TeamCity'] },
+  { category: 'Graphics',     items: ['DirectX', 'OpenGL'] },
+  { category: 'Web',          items: ['HTML', 'Javascript'] },
+  { category: 'Tools',        items: ['Visual Studio', 'Perforce', 'GitHub', 'SourceTree', 'SVN', 'TeamCity', 'Cursor', 'Claude Code'] },
   { category: 'Professional', items: ['Software Architecture', 'Encryption / Security', 'Automation Tools', 'Global Live Service'] },
 ]
 
@@ -197,6 +204,16 @@ const AWARDS = [
 // ─── 유틸 ───────────────────────────────────────────────────────────────────────
 
 const ACCENT = '#34799e'
+
+function renderText(text, highlights, accentColor) {
+  if (!highlights?.length) return text
+  const pattern = new RegExp(`(${highlights.map(h => h.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|')})`)
+  return text.split(pattern).map((part, i) =>
+    highlights.includes(part)
+      ? <span key={i} className="font-semibold" style={{ color: accentColor }}>{part}</span>
+      : part
+  )
+}
 
 function scrollTo(id) {
   document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
@@ -538,14 +555,23 @@ function About() {
   return (
     <Section id="about">
       <SectionHeading>About Me</SectionHeading>
-      <motion.p variants={fadeUp} className="text-gray-700 text-sm leading-8 max-w-2xl">
-        2017년부터 유니티와 언리얼 엔진을 통해 모바일/PC 글로벌 서비스를 성공적으로 이끌어온 개발자입니다.
-        닌텐도 IP{' '}
-        <span className="font-semibold" style={{ color: ACCENT }}>닥터 마리오 월드</span>의 초기 개발부터{' '}
-        <span className="font-semibold" style={{ color: ACCENT }}>로스트아크</span>의 5년 라이브 서비스까지,
-        시스템 설계와 안정성 확보에 특화된 역량을 보유하고 있습니다.
-        단순히 코드를 짜는 것을 넘어, 동료의 목적과 입장을 이해하고 협업 효율을 만드는 팀워크 중심의 개발을 지향합니다.
-      </motion.p>
+      <div className="space-y-4 max-w-2xl">
+        <motion.p variants={fadeUp} className="text-gray-700 text-sm leading-8">
+          2017년부터{' '}
+          <span className="font-semibold" style={{ color: ACCENT }}>언리얼과 유니티</span>를 아우르며 모바일 및 PC 글로벌 서비스를 개발해 왔습니다.
+          닌텐도 '닥터 마리오 월드' 초기 빌드업부터{' '}
+          <span className="font-semibold" style={{ color: ACCENT }}>'로스트아크' 5년 라이브 서비스</span>까지 참여하며,
+          콘텐츠 개발과{' '}
+          <span className="font-semibold" style={{ color: ACCENT }}>로우 레벨 기반의 시스템 설계·분석</span>을 통해 대규모 서비스의 안정성을 확보하는 데 집중했습니다.
+        </motion.p>
+        <motion.p variants={fadeUp} className="text-gray-700 text-sm leading-8">
+          단순 기능 구현에 그치지 않고,{' '}
+          <span className="font-semibold" style={{ color: ACCENT }}>작업 프로세스와 협업 구조를 직접 개선</span>해 팀 생산성을 높인 리딩 경험이 있습니다.
+          로우 레벨에 대한 탄탄한 이해를 바탕으로 신기술을 흡수하는 데 거부감이 없으며,{' '}
+          <span className="font-semibold" style={{ color: ACCENT }}>Cursor와 Claude Code</span> 같은 AI 도구를 워크플로우에 적극 활용해{' '}
+          <span className="font-semibold" style={{ color: ACCENT }}>실질적인 협업 효율</span>을 만드는 개발을 선호합니다.
+        </motion.p>
+      </div>
     </Section>
   )
 }
@@ -689,7 +715,7 @@ function CompanyCard({ accent, company, totalPeriod, projects }) {
                       />
                       <div>
                         <p className="text-sm font-bold mb-2" style={{ color: accent }}>{c.label}</p>
-                        <p className="text-gray-700 text-sm leading-7">{c.text}</p>
+                        <p className="text-gray-700 text-sm leading-7">{renderText(c.text, c.highlights, '#c07a30')}</p>
                       </div>
                     </div>
                   ))}
@@ -1059,8 +1085,8 @@ export default function App() {
         <About />
         <WorkExperience />
         <Activities />
-        <PersonalWork />
         <Skills />
+        <PersonalWork />
         <Awards />
         <footer className="text-center py-6">
           <p className="text-gray-400 text-xs">© 2026 Seong-taek Lim · Game Client Developer</p>
