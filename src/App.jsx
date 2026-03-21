@@ -5,12 +5,12 @@ import { Mail, Phone, Menu, X, ExternalLink, ChevronRight, Triangle, Box } from 
 // ─── 데이터 ────────────────────────────────────────────────────────────────────
 
 const NAV_ITEMS = [
-  { id: 'about',    label: 'About Me' },
-  { id: 'lostark',  label: 'Featured: Lost Ark' },
-  { id: 'history',  label: 'Professional History' },
-  { id: 'personal', label: 'Personal Work' },
-  { id: 'skills',   label: 'Technical Skills' },
-  { id: 'awards',   label: 'Awards' },
+  { id: 'about',      label: 'About Me' },
+  { id: 'work',       label: 'Work Experience' },
+  { id: 'personal',   label: 'Personal Work' },
+  { id: 'skills',     label: 'Technical Skills' },
+  { id: 'awards',     label: 'Awards' },
+  { id: 'activities', label: 'Activities' },
 ]
 
 const TECH_BADGES = ['C++', 'C#', 'Unreal', 'Unity', 'Perforce', 'Git', 'SVN', 'TeamCity']
@@ -96,6 +96,7 @@ const NHN_ITEMS = [
 const PERSONAL_WORK = [
   {
     year: '2021',
+    accent: '#4a6aaa',
     projects: [
       {
         title: 'The Way',
@@ -109,6 +110,7 @@ const PERSONAL_WORK = [
   },
   {
     year: '2017',
+    accent: '#4a8a62',
     projects: [
       {
         title: 'Snakes-Server',
@@ -122,6 +124,7 @@ const PERSONAL_WORK = [
   },
   {
     year: '2016',
+    accent: '#9a6a38',
     projects: [
       {
         title: 'LoAlto',
@@ -142,6 +145,7 @@ const PERSONAL_WORK = [
   },
   {
     year: '2014',
+    accent: '#6a5a9a',
     projects: [
       {
         title: '그녀의 기사단',
@@ -161,6 +165,7 @@ const PERSONAL_WORK = [
   },
   {
     year: '2012',
+    accent: '#2a8a84',
     projects: [
       {
         title: '부스터 루스터',
@@ -181,7 +186,7 @@ const SKILLS = [
 ]
 
 const AWARDS = [
-  { title: '청강문화산업대학교 컴퓨터게임과 졸업', type: 'edu' },
+  { title: '청강문화산업대학교 만화애니게임학과 졸업', year: '2017', type: 'edu' },
   { title: '대한민국 앱 창작 경진대회 금상', org: '중소기업청', year: '2012', type: 'gold' },
   { title: 'HTML 앱 공모전 은상', org: '한국무선인터넷산업연합회', year: '2012', type: 'silver' },
   { title: '전국기능경기대회 게임개발 동메달', org: '국제기능올림픽대회', year: '2010', type: 'bronze' },
@@ -253,12 +258,26 @@ function SectionHeading({ children }) {
 // ─── YouTube 버튼 ──────────────────────────────────────────────────────────────
 
 function YTBanner({ videoId, label }) {
+  const [playing, setPlaying] = useState(false)
+
+  if (playing) {
+    return (
+      <div className="relative w-full overflow-hidden rounded-lg bg-black" style={{ aspectRatio: '16/9' }}>
+        <iframe
+          src={`https://www.youtube.com/embed/${videoId}?autoplay=1`}
+          title={label}
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+          className="absolute inset-0 w-full h-full border-0"
+        />
+      </div>
+    )
+  }
+
   return (
-    <a
-      href={`https://youtu.be/${videoId}`}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="group relative block w-full overflow-hidden rounded-lg bg-black"
+    <button
+      onClick={() => setPlaying(true)}
+      className="group relative block w-full overflow-hidden rounded-lg bg-black cursor-pointer"
       style={{ aspectRatio: '16/6' }}
     >
       <img
@@ -277,10 +296,10 @@ function YTBanner({ videoId, label }) {
         </div>
         <div>
           <p className="text-white text-sm font-semibold leading-snug drop-shadow">{label}</p>
-          <p className="text-white/60 text-xs mt-0.5">Watch on YouTube</p>
+          <p className="text-white/60 text-xs mt-0.5">Play on page</p>
         </div>
       </div>
-    </a>
+    </button>
   )
 }
 
@@ -552,7 +571,7 @@ function ProjectCard({ accentLabel, accentColor, borderColor, title, subtitle, m
           <p className="text-sm mt-0.5 font-medium" style={{ color: accentColor }}>{subtitle}</p>
           <div className="flex flex-wrap items-center gap-x-3 gap-y-2 mt-2 text-xs text-gray-500">
             {meta.map((m, i) => (
-              <span key={i}>{m}</span>
+              <span key={i} className="font-semibold text-gray-700 font-mono">{m}</span>
             ))}
             {engine && <EngineIcon engine={engine} />}
             {badge && (
@@ -594,89 +613,88 @@ function ProjectCard({ accentLabel, accentColor, borderColor, title, subtitle, m
   )
 }
 
-// ─── Featured: Lost Ark ────────────────────────────────────────────────────────
+// ─── Work Experience ───────────────────────────────────────────────────────────
 
-function LostArk() {
+function CompanyCard({ accent, company, totalPeriod, projects }) {
   return (
-    <Section id="lostark">
-      <SectionHeading>Featured Experience</SectionHeading>
-      <motion.div variants={fadeUp}>
-        <ProjectCard
-          accentLabel="Core Achievement"
-          accentColor="#34799e"
-          borderColor="#34799e"
-          title="Lost Ark"
-          subtitle="Smilegate RPG · Tripod Studio"
-          meta={['2021.07 – 현재']}
-          badge="라이브 서비스 중"
-          badgeGreen
-          videoId="jBspl-Am1eY"
-          engine="unreal"
-          summary="글로벌 대규모 라이브 서비스의 콘텐츠 개발 및 기술적 안정성 확보, 개발 공정 효율화"
-          contributions={LOST_ARK_CONTRIBUTIONS}
-        />
-      </motion.div>
-    </Section>
-  )
-}
-
-// ─── Professional History ──────────────────────────────────────────────────────
-
-const NHN_ACCENT = '#5a7a5a'
-
-function NHNGroupCard() {
-  return (
-    <div className="rounded-xl overflow-hidden border-2" style={{ borderColor: NHN_ACCENT }}>
-      {/* 그룹 헤더 바 */}
-      <div className="flex items-center justify-between px-5 py-2.5" style={{ backgroundColor: NHN_ACCENT }}>
+    <div className="rounded-xl overflow-hidden border-2" style={{ borderColor: accent }}>
+      {/* 회사 헤더 바 */}
+      <div className="flex items-center justify-between px-5 py-2.5" style={{ backgroundColor: accent }}>
         <div className="flex items-center gap-2">
           <span className="w-1.5 h-1.5 rounded-full bg-white opacity-80" />
-          <span className="text-white text-[11px] font-bold tracking-[0.15em] uppercase">NHN Group</span>
+          <span className="text-white text-[11px] font-bold tracking-[0.15em] uppercase">{company}</span>
         </div>
-        <span className="text-white/70 text-[11px] font-mono">2017.09 – 2021.07</span>
+        <span className="text-white text-[11px] font-semibold font-mono">{totalPeriod}</span>
       </div>
 
-      {/* 서브 프로젝트 목록 */}
+      {/* 프로젝트 목록 */}
       <div className="bg-white divide-y divide-gray-100">
-        {NHN_ITEMS.map((item, i) => (
+        {projects.map((proj, i) => (
           <div key={i} className="p-6">
-            {/* 프로젝트 헤더 */}
-            <div className="mb-4">
-              <h3 className="text-[#1a1a1a] font-bold text-lg tracking-tight">{item.project}</h3>
-              <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5 mt-1.5 text-xs text-gray-500">
-                <span className="font-medium text-gray-600">{item.studio}</span>
-                <span>{item.period}</span>
-                {item.engine && <EngineIcon engine={item.engine} />}
-                {(item.released || item.status) && (
-                  <span className={`font-medium ${item.released ? 'text-emerald-600' : 'text-gray-400'}`}>
-                    {item.released ? `● ${item.released}` : item.status}
-                  </span>
-                )}
+            <div className="flex gap-5">
+              {/* 연도 컬럼 */}
+              <div className="shrink-0 w-14 pt-0.5 text-right">
+                {(() => {
+                  const [s, e] = proj.period.split(' – ')
+                  const startYear = s.slice(0, 4)
+                  const endYear = e === '현재' ? '현재' : e.slice(0, 4)
+                  return endYear === startYear ? (
+                    <span className="text-2xl font-black leading-none" style={{ color: accent }}>{startYear}</span>
+                  ) : (
+                    <div className="flex flex-col items-end leading-tight">
+                      <span className="text-2xl font-black" style={{ color: accent }}>{startYear}</span>
+                      <span className="text-[11px] font-semibold" style={{ color: `${accent}99` }}>– {endYear}</span>
+                    </div>
+                  )
+                })()}
               </div>
-            </div>
 
-            {item.videoId && (
-              <div className="mb-4">
-                <YTBanner videoId={item.videoId} label={`${item.project} — YouTube`} />
-              </div>
-            )}
+              {/* 구분선 */}
+              <div className="shrink-0 w-px self-stretch" style={{ backgroundColor: `${accent}40` }} />
 
-            {/* 기여 내용 */}
-            <div className="space-y-4">
-              {item.contributions.map((c, j) => (
-                <div key={j} className="flex gap-4">
-                  <div
-                    className="shrink-0 w-0.5 rounded-full mt-1 self-stretch min-h-[1rem]"
-                    style={{ backgroundColor: NHN_ACCENT }}
-                  />
-                  <div>
-                    <p className="text-sm font-bold mb-2" style={{ color: NHN_ACCENT }}>
-                      {c.label}
-                    </p>
-                    <p className="text-gray-700 text-sm leading-7">{c.text}</p>
+              {/* 내용 */}
+              <div className="flex-1">
+                <div className="mb-3">
+                  <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+                    <h3 className="text-[#1a1a1a] font-bold text-lg tracking-tight">{proj.title}</h3>
+                    {proj.badge && (
+                      <span className={`text-xs font-medium ${proj.badgeGreen ? 'text-emerald-600' : 'text-gray-400'}`}>
+                        {proj.badgeGreen ? '● ' : ''}{proj.badge}
+                      </span>
+                    )}
+                  </div>
+                  <div className="flex flex-wrap items-center gap-x-3 gap-y-1 mt-1 text-xs text-gray-500">
+                    {proj.studio && <span className="font-medium text-gray-600">{proj.studio}</span>}
+                    <span className="font-semibold text-gray-700 font-mono">{proj.period}</span>
+                    {proj.engine && <EngineIcon engine={proj.engine} />}
                   </div>
                 </div>
-              ))}
+
+                {proj.summary && (
+                  <p className="text-gray-600 text-sm mb-4 pb-4 border-b border-gray-100">{proj.summary}</p>
+                )}
+
+                {proj.videoId && (
+                  <div className="mb-4">
+                    <YTBanner videoId={proj.videoId} label={`${proj.title} — YouTube`} />
+                  </div>
+                )}
+
+                <div className="space-y-4">
+                  {proj.contributions.map((c, j) => (
+                    <div key={j} className="flex gap-4">
+                      <div
+                        className="shrink-0 w-0.5 rounded-full mt-1 self-stretch min-h-[1rem]"
+                        style={{ backgroundColor: accent }}
+                      />
+                      <div>
+                        <p className="text-sm font-bold mb-2" style={{ color: accent }}>{c.label}</p>
+                        <p className="text-gray-700 text-sm leading-7">{c.text}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         ))}
@@ -685,13 +703,51 @@ function NHNGroupCard() {
   )
 }
 
-function History() {
+const SMILEGATE_PROJECTS = [
+  {
+    title: 'Lost Ark',
+    studio: 'Tripod Studio',
+    period: '2021.07 – 현재',
+    badge: '라이브 서비스 중',
+    badgeGreen: true,
+    engine: 'unreal',
+    videoId: 'jBspl-Am1eY',
+    summary: '글로벌 대규모 라이브 서비스의 콘텐츠 개발 및 기술적 안정성 확보, 개발 공정 효율화',
+    contributions: LOST_ARK_CONTRIBUTIONS,
+  },
+]
+
+const NHN_PROJECTS = NHN_ITEMS.map(item => ({
+  title: item.project,
+  studio: item.studio,
+  period: item.period,
+  badge: item.released || item.status,
+  badgeGreen: !!item.released,
+  engine: item.engine,
+  videoId: item.videoId,
+  contributions: item.contributions,
+}))
+
+function WorkExperience() {
   return (
-    <Section id="history">
-      <SectionHeading>Professional History</SectionHeading>
+    <Section id="work">
+      <SectionHeading>Work Experience</SectionHeading>
       <div className="space-y-6">
         <motion.div variants={fadeUp}>
-          <NHNGroupCard />
+          <CompanyCard
+            accent="#34799e"
+            company="Smilegate RPG"
+            totalPeriod="2021.07 – 현재"
+            projects={SMILEGATE_PROJECTS}
+          />
+        </motion.div>
+        <motion.div variants={fadeUp}>
+          <CompanyCard
+            accent="#5a7a5a"
+            company="NHN Group"
+            totalPeriod="2017.09 – 2021.07"
+            projects={NHN_PROJECTS}
+          />
         </motion.div>
       </div>
     </Section>
@@ -747,70 +803,67 @@ function sortTags(tags) {
 }
 
 function PersonalWork() {
+  const headerColor = '#1e293b'
   return (
     <Section id="personal">
       <SectionHeading>Personal Work</SectionHeading>
       <motion.p variants={fadeUp} className="text-gray-500 text-sm mb-8 -mt-4 leading-relaxed">
-        상용 엔진 활용 능력뿐만 아니라, 게임 엔진의 핵심 메커니즘과 서버 아키텍처를 깊이 있게 탐구하며 기술적 기초를 다져온 프로젝트들입니다.
+        상용 엔진이 내부적으로 어떻게 돌아가는지 직접 확인해보고 싶어 시작한 프로젝트들입니다. DirectX와 OpenGL을 이용해 렌더러, 물리, 애니메이션 엔진을 직접 구현하고, IOCP 서버나 NDK 환경까지 설계하며 전반적인 기술 스택을 경험해 왔습니다. 도구의 사용법을 넘어 기술적 본질을 깊이 있게 이해하고 싶어 진행한 개인 프로젝트들입니다.
       </motion.p>
-
-      <div className="space-y-10">
-        {PERSONAL_WORK.map((group) => (
-          <motion.div key={group.year} variants={fadeUp}>
-            {/* 연도 헤더 */}
-            <div className="flex items-center gap-4 mb-3">
-              <span className="text-lg font-black text-[#34799e]">{group.year}</span>
-              <hr className="flex-1 border-t border-gray-200" />
-            </div>
-
-            {/* 해당 연도 프로젝트 목록 */}
-            <div className="space-y-6 pl-1">
-              {group.projects.map((proj, i) => (
-                <div key={i} className="flex gap-4">
-                  {/* 타임라인 dot */}
-                  <div className="flex flex-col items-center pt-1.5">
-                    <div className="w-2 h-2 rounded-full bg-gray-300 shrink-0" />
-                    {i < group.projects.length - 1 && (
-                      <div className="w-px flex-1 bg-gray-100 mt-1.5" />
-                    )}
+      <motion.div variants={fadeUp}>
+        <div className="rounded-xl overflow-hidden border-2" style={{ borderColor: headerColor }}>
+          {/* 헤더 바 */}
+          <div className="flex items-center gap-2 px-5 py-2.5" style={{ backgroundColor: headerColor }}>
+            <span className="w-1.5 h-1.5 rounded-full bg-white opacity-80" />
+            <span className="text-white text-[11px] font-bold tracking-[0.15em] uppercase">Personal Project</span>
+          </div>
+          {/* 연도별 그룹 */}
+          <div className="bg-white divide-y divide-gray-100">
+            {PERSONAL_WORK.map((group) => (
+              <div key={group.year} className="p-6">
+                <div className="flex gap-5">
+                  {/* 연도 컬럼 */}
+                  <div className="shrink-0 w-14 pt-0.5 text-right">
+                    <span className="text-2xl font-black leading-none" style={{ color: group.accent }}>{group.year}</span>
                   </div>
-
-                  <div className="flex-1 pb-1">
-                    {/* 제목 + 기간 */}
-                    <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-2">
-                      <h3 className="text-gray-900 font-bold text-base">{proj.title}</h3>
-                      <span className="text-gray-400 text-xs font-mono">{proj.period}</span>
-                    </div>
-
-                    {/* 엔진 아이콘 + 태그 배지 */}
-                    <div className="flex flex-wrap items-center gap-1.5 mb-3">
-                      {proj.engine && <EngineIcon engine={proj.engine} />}
-                      {sortTags(proj.tags).map((tag) => (
-                        <span
-                          key={tag}
-                          className={`px-2 py-0.5 text-[11px] font-semibold rounded border ${TAG_COLOR_MAP[tag] ?? TAG_COLOR_DEFAULT}`}
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-
-                    {/* YouTube 배너 */}
-                    {proj.videoId && (
-                      <div className="mb-3">
-                        <YTBanner videoId={proj.videoId} label={`${proj.title} — YouTube`} />
+                  {/* 구분선 */}
+                  <div className="shrink-0 w-px self-stretch" style={{ backgroundColor: `${group.accent}40` }} />
+                  {/* 프로젝트 목록 */}
+                  <div className="flex-1 space-y-8">
+                    {group.projects.map((proj, i) => (
+                      <div key={i}>
+                        <div className="mb-4">
+                          <h3 className="text-[#1a1a1a] font-bold text-lg tracking-tight">{proj.title}</h3>
+                          <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5 mt-1.5 text-xs text-gray-500">
+                            <span className="font-mono">{proj.period}</span>
+                            {proj.engine && <EngineIcon engine={proj.engine} />}
+                          </div>
+                          <div className="flex flex-wrap items-center gap-1.5 mt-2">
+                            {sortTags(proj.tags).map((tag) => (
+                              <span key={tag} className={`px-2 py-0.5 text-[11px] font-semibold rounded border ${TAG_COLOR_MAP[tag] ?? TAG_COLOR_DEFAULT}`}>
+                                {tag}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                        {proj.videoId && (
+                          <div className="mb-4">
+                            <YTBanner videoId={proj.videoId} label={`${proj.title} — YouTube`} />
+                          </div>
+                        )}
+                        <div className="flex gap-4">
+                          <div className="shrink-0 w-0.5 rounded-full mt-1 self-stretch min-h-[1rem]" style={{ backgroundColor: group.accent }} />
+                          <p className="text-gray-700 text-sm leading-7">{proj.desc}</p>
+                        </div>
                       </div>
-                    )}
-
-                    {/* 설명 */}
-                    <p className="text-gray-600 text-sm leading-7">{proj.desc}</p>
+                    ))}
                   </div>
                 </div>
-              ))}
-            </div>
-          </motion.div>
-        ))}
-      </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </motion.div>
     </Section>
   )
 }
@@ -838,6 +891,96 @@ function Skills() {
           </motion.div>
         ))}
       </div>
+    </Section>
+  )
+}
+
+// ─── Activities & Mentoring ────────────────────────────────────────────────────
+
+const ACTIVITIES = [
+  {
+    year: '2025',
+    items: [
+      {
+        title: '글로벌 게임 서비스를 위한 시스템 설계 전략',
+        desc: '국가별 규제와 환경 변화에 코드 재빌드 없이 대응 가능한 시스템 구조 및 데이터 중심 설계 노하우를 공유했습니다.',
+        tags: ['#Scalable_Architecture', '#Override_System', '#Data_Driven'],
+      },
+      {
+        title: '개발자 시점의 협업 파이프라인',
+        desc: '실제 프로젝트 파이프라인을 분석하여 타 직군과의 마찰을 줄이고 효율적으로 소통하는 실전 협업 방식을 다뤘습니다.',
+        tags: ['#Dev_Pipeline', '#Cross_Functional', '#Efficiency'],
+      },
+    ],
+  },
+  {
+    year: '2024',
+    items: [
+      {
+        title: '게임 개발자 취업 로드맵 및 채용 프로세스 분석',
+        desc: '현업 기술 스택을 정의하고 서류 전형부터 코딩 테스트, 기술 면접까지 이어지는 채용 단계별 준비 전략을 가이드했습니다.',
+        tags: ['#Tech_Stack', '#Recruitment_Strategy', '#Career_Roadmap'],
+      },
+    ],
+  },
+  {
+    year: '2023',
+    items: [
+      {
+        title: '클라이언트 개발 실무 및 아키텍처',
+        desc: '학부생을 대상으로 기획 요구사항에 대한 기술적 검증부터 알고리즘 설계, 실제 시스템 구현까지 이어지는 클라이언트 개발의 전체 프로세스를 강의했습니다.',
+        tags: ['#Technical_Validation', '#System_Design', '#Algorithm_Logic'],
+      },
+      {
+        title: '예비 개발자를 위한 논리적 사고력 멘토링',
+        desc: '초중고 학생을 대상으로 프로그래밍 언어의 본질적인 역할과 논리적 문제 해결의 중요성을 실제 게임 개발 사례를 통해 멘토링했습니다.',
+        tags: ['#Problem_Solving', '#Mentoring', '#Mental_Model'],
+      },
+    ],
+  },
+]
+
+function Activities() {
+  const accent = '#8a5a7a'
+  return (
+    <Section id="activities">
+      <SectionHeading>Activities & Mentoring</SectionHeading>
+      <motion.p variants={fadeUp} className="text-gray-500 text-sm mb-8 -mt-4 leading-relaxed">
+        실무에서의 기술적 고민과 해결 과정을 기록하며, 세미나와 멘토링을 통해 얻은 인사이트를 나누고 있습니다.
+      </motion.p>
+      <motion.div variants={fadeUp}>
+        <div className="rounded-xl overflow-hidden border-2" style={{ borderColor: accent }}>
+          {/* 헤더 바 */}
+          <div className="flex items-center gap-2 px-5 py-2.5" style={{ backgroundColor: accent }}>
+            <span className="w-1.5 h-1.5 rounded-full bg-white opacity-80" />
+            <span className="text-white text-[11px] font-bold tracking-[0.15em] uppercase">Activities & Mentoring</span>
+          </div>
+          {/* 연도별 그룹 */}
+          <div className="bg-white divide-y divide-gray-100">
+            {ACTIVITIES.map((group) => (
+              <div key={group.year} className="p-6">
+                <div className="flex gap-5">
+                  {/* 연도 컬럼 */}
+                  <div className="shrink-0 w-14 pt-0.5 text-right">
+                    <span className="text-2xl font-black leading-none" style={{ color: accent }}>{group.year}</span>
+                  </div>
+                  {/* 구분선 */}
+                  <div className="shrink-0 w-px self-stretch" style={{ backgroundColor: `${accent}40` }} />
+                  {/* 항목 목록 */}
+                  <div className="flex-1 space-y-5">
+                    {group.items.map((item, i) => (
+                      <div key={i}>
+                        <h3 className="text-[#1a1a1a] font-bold text-base tracking-tight mb-1">{item.title}</h3>
+                        <p className="text-gray-600 text-sm leading-7">{item.desc}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </motion.div>
     </Section>
   )
 }
@@ -914,8 +1057,8 @@ export default function App() {
 
       <main className="max-w-4xl mx-auto px-6 py-8">
         <About />
-        <LostArk />
-        <History />
+        <WorkExperience />
+        <Activities />
         <PersonalWork />
         <Skills />
         <Awards />
