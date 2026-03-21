@@ -18,7 +18,7 @@ const TECH_BADGES = ['C++', 'C#', 'Unreal', 'Unity', 'Perforce', 'Git', 'SVN', '
 const LOST_ARK_CONTRIBUTIONS = [
   {
     label: '핵심 시스템 및 콘텐츠',
-    text: "로스트아크의 주요 성장 시스템인 '초월' 콘텐츠의 클라이언트 아키텍처를 설계하고, 복잡한 연출 로직 최적화로 콘텐츠의 안정적 출시를 이끌었습니다. 또한 커스터마이징, IME(입력기), 웹 연동 등 필수 시스템의 유지보수 및 고도화를 통해 라이브 서비스의 품질을 지속적으로 관리해 왔습니다.",
+    text: "로스트아크의 성장 시스템인 '초월' 콘텐츠의 클라이언트 아키텍처를 설계하고, 복잡한 연출 로직 최적화로 콘텐츠의 안정적인 출시를 이끌었습니다. 또한 인·아웃게임을 아우르는 다양한 콘텐츠 개발을 담당하고 제작 효율을 위한 툴 개발, 웹 연동, IME(입력기) 등 기반 시스템의 유지보수와 고도화를 수행하며 라이브 서비스 전반의 품질 확보에 기여했습니다.",
     highlights: ["'초월' 콘텐츠의 클라이언트 아키텍처를 설계"],
   },
   {
@@ -72,6 +72,10 @@ const NHN_ITEMS = [
       {
         label: '기믹 블록 시스템',
         text: '글로벌 런칭 프로젝트로서, 객체지향 프로그래밍의 추상화와 상속 구조를 적극 활용해 독립적으로 동작하는 35종의 고유 기믹 블록 시스템을 구축했습니다. 이를 통해 라이브 서비스 중에도 신속한 업데이트와 효율적인 유지보수가 가능한 기반을 마련했습니다.',
+      },
+      {
+        label: 'UGUI 기반 콘텐츠 개발',
+        text: '다양한 인게임 요소들을 UGUI 시스템 내에 효율적으로 구조화하여, 인터페이스의 시각적 완성도와 콘텐츠 서비스의 안정성을 확보했습니다.',
       },
       {
         label: '전용 레벨 에디터',
@@ -265,7 +269,7 @@ function EngineIcon({ engine }) {
 
 function SectionHeading({ children }) {
   return (
-    <motion.div variants={fadeUp} className="mb-8">
+    <motion.div variants={fadeUp} className="mb-6 md:mb-8">
       <h2 className="text-xl font-bold text-[#1a1a1a] tracking-tight">{children}</h2>
       <div className="mt-2 w-8 h-0.5" style={{ backgroundColor: ACCENT }} />
     </motion.div>
@@ -420,22 +424,22 @@ function Header({ activeSection, mobileMenuOpen, setMobileMenuOpen }) {
       {/* ── 상단 프로필 영역 ── */}
       <div className="relative bg-[#1e2d3d] text-white overflow-hidden">
         <CodeParticleCanvas />
-        <div className="relative z-10 max-w-4xl mx-auto px-6 py-14 text-center">
+        <div className="relative z-10 max-w-4xl mx-auto px-4 md:px-6 py-10 md:py-14 text-center">
           {/* 아바타 */}
           <div
-            className="w-24 h-24 rounded-full mx-auto mb-6 flex items-center justify-center border-2 text-sm font-bold tracking-widest"
+            className="w-20 h-20 md:w-24 md:h-24 rounded-full mx-auto mb-5 md:mb-6 flex items-center justify-center border-2 text-xs md:text-sm font-bold tracking-widest"
             style={{ backgroundColor: `${ACCENT}25`, borderColor: `${ACCENT}60`, color: ACCENT }}
           >
             Creataek
           </div>
 
           {/* 이름 */}
-          <h1 className="text-4xl font-black tracking-tight text-white">임성택</h1>
-          <p className="text-gray-300 text-base font-medium mt-1">Seong-taek Lim</p>
-          <p className="text-[#34799e] text-base font-semibold mt-3">Game Client Developer · 10th Year</p>
+          <h1 className="text-3xl md:text-4xl font-black tracking-tight text-white">임성택</h1>
+          <p className="text-gray-300 text-sm md:text-base font-medium mt-1">Seong-taek Lim</p>
+          <p className="text-[#34799e] text-sm md:text-base font-semibold mt-3">Game Client Developer · 10th Year</p>
 
           {/* 연락처 */}
-          <div className="flex flex-wrap items-center justify-center gap-5 mt-6">
+          <div className="flex flex-wrap items-center justify-center gap-3 md:gap-5 mt-5 md:mt-6">
             <a
               href="mailto:ljslove119@naver.com"
               className="flex items-center gap-2 text-gray-300 hover:text-white transition-colors text-sm font-medium"
@@ -542,7 +546,7 @@ function Section({ id, children }) {
       whileInView="visible"
       viewport={{ once: true, amount: 0.08 }}
       variants={stagger}
-      className="bg-white rounded-xl shadow-sm border border-gray-100 p-8 mb-6"
+      className="bg-white rounded-xl shadow-sm border border-gray-100 p-4 md:p-8 mb-4 md:mb-6"
     >
       {children}
     </motion.div>
@@ -656,19 +660,19 @@ function CompanyCard({ accent, company, totalPeriod, projects }) {
       {/* 프로젝트 목록 */}
       <div className="bg-white divide-y divide-gray-100">
         {projects.map((proj, i) => (
-          <div key={i} className="p-6">
-            <div className="flex gap-5">
+          <div key={i} className="p-4 md:p-6">
+            <div className="flex flex-col md:flex-row gap-3 md:gap-5">
               {/* 연도 컬럼 */}
-              <div className="shrink-0 w-14 pt-0.5 text-right">
+              <div className="shrink-0 md:w-14 md:pt-0.5 md:text-right">
                 {(() => {
                   const [s, e] = proj.period.split(' – ')
                   const startYear = s.slice(0, 4)
                   const endYear = e === '현재' ? '현재' : e.slice(0, 4)
                   return endYear === startYear ? (
-                    <span className="text-2xl font-black leading-none" style={{ color: accent }}>{startYear}</span>
+                    <span className="text-xl md:text-2xl font-black leading-none" style={{ color: accent }}>{startYear}</span>
                   ) : (
-                    <div className="flex flex-col items-end leading-tight">
-                      <span className="text-2xl font-black" style={{ color: accent }}>{startYear}</span>
+                    <div className="flex md:flex-col items-baseline md:items-end gap-1 md:gap-0 leading-tight">
+                      <span className="text-xl md:text-2xl font-black" style={{ color: accent }}>{startYear}</span>
                       <span className="text-[11px] font-semibold" style={{ color: `${accent}99` }}>– {endYear}</span>
                     </div>
                   )
@@ -676,7 +680,7 @@ function CompanyCard({ accent, company, totalPeriod, projects }) {
               </div>
 
               {/* 구분선 */}
-              <div className="shrink-0 w-px self-stretch" style={{ backgroundColor: `${accent}40` }} />
+              <div className="hidden md:block shrink-0 w-px self-stretch" style={{ backgroundColor: `${accent}40` }} />
 
               {/* 내용 */}
               <div className="flex-1">
@@ -738,7 +742,6 @@ const SMILEGATE_PROJECTS = [
     badgeGreen: true,
     engine: 'unreal',
     videoId: 'jBspl-Am1eY',
-    summary: '글로벌 대규모 라이브 서비스의 콘텐츠 개발 및 기술적 안정성 확보, 개발 공정 효율화',
     contributions: LOST_ARK_CONTRIBUTIONS,
   },
 ]
@@ -846,14 +849,14 @@ function PersonalWork() {
           {/* 연도별 그룹 */}
           <div className="bg-white divide-y divide-gray-100">
             {PERSONAL_WORK.map((group) => (
-              <div key={group.year} className="p-6">
-                <div className="flex gap-5">
+              <div key={group.year} className="p-4 md:p-6">
+                <div className="flex flex-col md:flex-row gap-3 md:gap-5">
                   {/* 연도 컬럼 */}
-                  <div className="shrink-0 w-14 pt-0.5 text-right">
-                    <span className="text-2xl font-black leading-none" style={{ color: group.accent }}>{group.year}</span>
+                  <div className="shrink-0 md:w-14 md:pt-0.5 md:text-right">
+                    <span className="text-xl md:text-2xl font-black leading-none" style={{ color: group.accent }}>{group.year}</span>
                   </div>
                   {/* 구분선 */}
-                  <div className="shrink-0 w-px self-stretch" style={{ backgroundColor: `${group.accent}40` }} />
+                  <div className="hidden md:block shrink-0 w-px self-stretch" style={{ backgroundColor: `${group.accent}40` }} />
                   {/* 프로젝트 목록 */}
                   <div className="flex-1 space-y-8">
                     {group.projects.map((proj, i) => (
@@ -898,7 +901,7 @@ function Skills() {
   return (
     <Section id="skills">
       <SectionHeading>Technical Skills</SectionHeading>
-      <div className="grid sm:grid-cols-2 gap-x-10 gap-y-7">
+      <div className="grid sm:grid-cols-2 gap-x-6 md:gap-x-10 gap-y-6 md:gap-y-7">
         {SKILLS.map(({ category, items }) => (
           <motion.div key={category} variants={fadeUp}>
             <p className="text-gray-500 text-[11px] uppercase tracking-widest font-medium mb-3">
@@ -928,14 +931,14 @@ const ACTIVITIES = [
     year: '2025',
     items: [
       {
-        title: '글로벌 게임 서비스를 위한 시스템 설계 전략',
-        desc: '국가별 규제와 환경 변화에 코드 재빌드 없이 대응 가능한 시스템 구조 및 데이터 중심 설계 노하우를 공유했습니다.',
-        tags: ['#Scalable_Architecture', '#Override_System', '#Data_Driven'],
+        title: '글로벌 게임 서비스를 위한 기술적 고려사항',
+        org: '대구게임아카데미',
+        desc: '글로벌 서비스의 지역별 요구사항에 유연하게 대응하기 위한 데이터 중심 아키텍처 설계와 기술적 확장성 확보 방안을 다뤘습니다.',
       },
       {
-        title: '개발자 시점의 협업 파이프라인',
-        desc: '실제 프로젝트 파이프라인을 분석하여 타 직군과의 마찰을 줄이고 효율적으로 소통하는 실전 협업 방식을 다뤘습니다.',
-        tags: ['#Dev_Pipeline', '#Cross_Functional', '#Efficiency'],
+        title: '게임 개발 프로세스',
+        org: '도봉 캠퍼스',
+        desc: '실제 프로젝트 파이프라인을 분석하여 타 직군과의 마찰을 줄이고 효율적으로 소통하는 협업 방식을 다뤘습니다.',
       },
     ],
   },
@@ -943,9 +946,9 @@ const ACTIVITIES = [
     year: '2024',
     items: [
       {
-        title: '게임 개발자 취업 로드맵 및 채용 프로세스 분석',
-        desc: '현업 기술 스택을 정의하고 서류 전형부터 코딩 테스트, 기술 면접까지 이어지는 채용 단계별 준비 전략을 가이드했습니다.',
-        tags: ['#Tech_Stack', '#Recruitment_Strategy', '#Career_Roadmap'],
+        title: '게임 개발자 로드맵',
+        org: '강동 캠퍼스',
+        desc: '현업에서 요구하는 핵심 기술 스택을 정의하고, 서류 전형부터 기술 면접에 이르는 채용 단계별 과정을 공유했습니다.',
       },
     ],
   },
@@ -953,14 +956,14 @@ const ACTIVITIES = [
     year: '2023',
     items: [
       {
-        title: '클라이언트 개발 실무 및 아키텍처',
-        desc: '학부생을 대상으로 기획 요구사항에 대한 기술적 검증부터 알고리즘 설계, 실제 시스템 구현까지 이어지는 클라이언트 개발의 전체 프로세스를 강의했습니다.',
-        tags: ['#Technical_Validation', '#System_Design', '#Algorithm_Logic'],
+        title: '클라이언트 개발 아키텍처',
+        org: '호서대학교 아산캠퍼스',
+        desc: '기획 요구사항에 대한 기술적 검증부터 알고리즘 설계, 실제 시스템 구현까지 이어지는 클라이언트 개발의 전체 프로세스를 공유했습니다.',
       },
       {
         title: '예비 개발자를 위한 논리적 사고력 멘토링',
-        desc: '초중고 학생을 대상으로 프로그래밍 언어의 본질적인 역할과 논리적 문제 해결의 중요성을 실제 게임 개발 사례를 통해 멘토링했습니다.',
-        tags: ['#Problem_Solving', '#Mentoring', '#Mental_Model'],
+        org: '그루터기 비전센터',
+        desc: '초중고 학생을 대상으로 프로그래밍 언어의 본질적인 역할과 논리적 문제 해결의 중요성을 실제 게임 개발 사례를 공유했습니다.',
       },
     ],
   },
@@ -972,7 +975,7 @@ function Activities() {
     <Section id="activities">
       <SectionHeading>Activities & Mentoring</SectionHeading>
       <motion.p variants={fadeUp} className="text-gray-500 text-sm mb-8 -mt-4 leading-relaxed">
-        실무에서의 기술적 고민과 해결 과정을 기록하며, 세미나와 멘토링을 통해 얻은 인사이트를 나누고 있습니다.
+        실무에서의 기술적 고민과 해결 과정에서 얻은 경험을 세미나와 멘토링을 통해 나누고 있습니다.
       </motion.p>
       <motion.div variants={fadeUp}>
         <div className="rounded-xl overflow-hidden border-2" style={{ borderColor: accent }}>
@@ -984,19 +987,22 @@ function Activities() {
           {/* 연도별 그룹 */}
           <div className="bg-white divide-y divide-gray-100">
             {ACTIVITIES.map((group) => (
-              <div key={group.year} className="p-6">
-                <div className="flex gap-5">
+              <div key={group.year} className="p-4 md:p-6">
+                <div className="flex flex-col md:flex-row gap-3 md:gap-5">
                   {/* 연도 컬럼 */}
-                  <div className="shrink-0 w-14 pt-0.5 text-right">
-                    <span className="text-2xl font-black leading-none" style={{ color: accent }}>{group.year}</span>
+                  <div className="shrink-0 md:w-14 md:pt-0.5 md:text-right">
+                    <span className="text-xl md:text-2xl font-black leading-none" style={{ color: accent }}>{group.year}</span>
                   </div>
                   {/* 구분선 */}
-                  <div className="shrink-0 w-px self-stretch" style={{ backgroundColor: `${accent}40` }} />
+                  <div className="hidden md:block shrink-0 w-px self-stretch" style={{ backgroundColor: `${accent}40` }} />
                   {/* 항목 목록 */}
                   <div className="flex-1 space-y-5">
                     {group.items.map((item, i) => (
                       <div key={i}>
-                        <h3 className="text-[#1a1a1a] font-bold text-base tracking-tight mb-1">{item.title}</h3>
+                        <div className="flex flex-wrap items-baseline gap-x-2 mb-1">
+                          <h3 className="text-[#1a1a1a] font-bold text-base tracking-tight">{item.title}</h3>
+                          {item.org && <span className="text-xs text-gray-400 font-medium">{item.org}</span>}
+                        </div>
                         <p className="text-gray-600 text-sm leading-7">{item.desc}</p>
                       </div>
                     ))}
@@ -1081,7 +1087,7 @@ export default function App() {
         setMobileMenuOpen={setMobileMenuOpen}
       />
 
-      <main className="max-w-4xl mx-auto px-6 py-8">
+      <main className="max-w-4xl mx-auto px-3 md:px-6 py-4 md:py-8">
         <About />
         <WorkExperience />
         <Activities />
