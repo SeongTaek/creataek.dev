@@ -26,20 +26,20 @@
   <text x="115" y="290" font-family="'Malgun Gothic', 'Apple SD Gothic Neo', 'Noto Sans KR', Arial, sans-serif" font-size="96" font-weight="700" fill="white">임성택</text>
 
   <!-- Role -->
-  <text x="118" y="360" font-family="'Segoe UI', Arial, sans-serif" font-size="32" font-weight="400" fill="#34799e" letter-spacing="2">Game Client Developer</text>
+  <text x="118" y="360" font-family="'Segoe UI', Arial, sans-serif" font-size="32" font-weight="600" fill="#7ec8e3" letter-spacing="2">Game Client Developer</text>
 
   <!-- Divider -->
-  <rect x="118" y="390" width="560" height="2" fill="#34799e" opacity="0.3" rx="1"/>
+  <rect x="118" y="390" width="560" height="2" fill="#7ec8e3" opacity="0.4" rx="1"/>
 
   <!-- Tags -->
-  <text x="118" y="435" font-family="'Segoe UI', Arial, sans-serif" font-size="22" fill="#94a3b8" letter-spacing="1">Unreal Engine  ·  Unity  ·  C++  ·  C#  ·  10년 경력</text>
+  <text x="118" y="435" font-family="'Segoe UI', Arial, sans-serif" font-size="22" fill="#e2e8f0" letter-spacing="1">Unreal Engine  ·  Unity  ·  C++  ·  C#  ·  10년 경력</text>
 
   <!-- Career -->
-  <text x="118" y="480" font-family="'Malgun Gothic', 'Apple SD Gothic Neo', 'Noto Sans KR', Arial, sans-serif" font-size="24" fill="#cbd5e1">로스트아크  ·  닥터 마리오 월드</text>
+  <text x="118" y="480" font-family="'Malgun Gothic', 'Apple SD Gothic Neo', 'Noto Sans KR', Arial, sans-serif" font-size="24" font-weight="600" fill="#f1f5f9">로스트아크  ·  닥터 마리오 월드</text>
 
   <!-- Domain badge -->
-  <rect x="118" y="508" width="200" height="38" rx="19" fill="#34799e" opacity="0.2" stroke="#34799e" stroke-width="1.5"/>
-  <text x="218" y="532" font-family="'Segoe UI', Arial, sans-serif" font-size="17" fill="#34799e" text-anchor="middle" letter-spacing="1">creataek.dev</text>
+  <rect x="118" y="508" width="220" height="38" rx="19" fill="#34799e" opacity="0.35" stroke="#7ec8e3" stroke-width="1.5"/>
+  <text x="228" y="532" font-family="'Segoe UI', Arial, sans-serif" font-size="17" font-weight="600" fill="#e2e8f0" text-anchor="middle" letter-spacing="1">creataekdev.vercel.app</text>
 
   <!-- Decorative circle right -->
   <circle cx="1020" cy="315" r="220" fill="none" stroke="#34799e" stroke-width="1" opacity="0.15"/>
