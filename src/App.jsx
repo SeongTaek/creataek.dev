@@ -11,15 +11,15 @@ const NAV_ITEMS = [
   { id: 'skills',     label: 'Technical Skills' },
   { id: 'awards',     label: 'Awards' },
   { id: 'activities', label: 'Activities' },
+  { id: 'contact',    label: 'Contact' },
 ]
 
-const TECH_BADGES = ['C++', 'C#', 'Unreal Engine', 'Unity', 'DirectX', 'OpenGL', 'Perforce', 'GitHub', 'SVN', 'TeamCity', 'Confluence', 'Jira', 'Cursor', 'Claude Code']
 
 const LOST_ARK_CONTRIBUTIONS = [
   {
     label: '핵심 시스템 및 콘텐츠',
-    text: "인·아웃게임을 아우르는 다양한 콘텐츠 개발을 담당하고 제작 효율을 위한 툴 개발, 웹 연동, IME(입력기) 등 기반 시스템의 유지보수와 고도화를 수행하며 라이브 서비스 전반의 품질 확보에 기여했습니다. 또한 시스템 병목 구간을 발굴·개선하여 성능을 최적화했으며, 로스트아크 '초월' 시스템의 클라이언트 아키텍처 설계와 개발 전반을 리딩하여 안정적인 콘텐츠 출시를 완수했습니다.",
-    highlights: ["시스템 병목 구간을 발굴·개선하여 성능을 최적화", "'초월' 시스템의 클라이언트 아키텍처 설계와 개발 전반을 리딩"],
+    text: "인·아웃게임을 아우르는 다양한 콘텐츠 개발을 담당하고 제작 효율을 위한 툴 개발, 웹 연동, IME(입력기) 등 기반 시스템의 유지보수와 고도화를 수행하며 라이브 서비스 전반의 품질 확보에 기여했습니다. 또한 클라이언트 실행 시 발생하는 수초 간의 프리징 현상과 시스템 병목 지점을 진단·개선하여 성능을 최적화했으며, 로스트아크 '초월' 시스템의 클라이언트 아키텍처 설계와 개발 전반을 리딩하여 안정적인 콘텐츠 출시를 완수했습니다.",
+    highlights: ["수초 간의 프리징 현상과 시스템 병목 지점을 진단·개선하여 성능을 최적화", "'초월' 시스템의 클라이언트 아키텍처 설계와 개발 전반을 리딩"],
   },
   {
     label: '보안 및 데이터 아키텍처',
@@ -111,6 +111,21 @@ const NHN_ITEMS = [
 
 const PERSONAL_WORK = [
   {
+    year: '2022',
+    accent: '#7a5a9a',
+    projects: [
+      {
+        id: 'vr-tooth-brushing',
+        title: 'VR Tooth Brushing',
+        period: '2022.01 ~ 2022.03',
+        engine: 'unreal',
+        images: ['/VRToothBrush.png', '/VRToothBrush2.png'],
+        desc: '언리얼 엔진 4 기반의 VR 양치질 교육 시뮬레이션입니다. Motion Controller와 칫솔 간의 커스텀 콜리전 채널로 치석 제거 인터랙션을 구현하고, Custom Stencil 기반 아웃라인으로 상호작용 오브젝트를 강조했습니다.',
+        tags: ['VR', 'Shader'],
+      },
+    ],
+  },
+  {
     year: '2021',
     accent: '#4a6aaa',
     projects: [
@@ -120,8 +135,17 @@ const PERSONAL_WORK = [
         period: '2021.03 ~ 2021.05',
         engine: 'unreal',
         videoId: 'vusiw_7MrlU',
-        desc: '언리얼 엔진 4의 프레임워크와 그래픽스 기능을 탐구하고자 Behavior Tree 기반의 지능형 상호작용 AI로 Material Function을 활용한 최적화된 연출 시스템을 설계하고 데이터 드리븐 방식으로 관리했습니다.',
-        tags: ['C++', 'Behavior Tree', 'Shader'],
+        desc: '언리얼 엔진 4의 프레임워크를 탐구하고자 순수 C++로 구현한 캐릭터 액션 게임 프로토타입입니다. 컴포넌트 기반 캐릭터 아키텍처, BTTask·BTDecorator·BTService를 직접 구현한 Behavior Tree AI, AnimNotify 기반 애니메이션 동기화, 템플릿 특수화를 활용한 타입 안전 데이터 관리 시스템을 설계했습니다.',
+        tags: ['C++', 'Behavior Tree'],
+      },
+      {
+        id: 'genetic-glass',
+        title: 'MorphSeed',
+        period: '2021.08 ~ 2021.11',
+        engine: 'unity',
+        videoId: 'Ba-YKMXSdtQ',
+        desc: '유전 알고리즘 원리를 적용한 인터랙티브 생성 아트 시뮬레이션입니다. 11종의 베이스 메시에서 3개를 선택해 660가지 진화 조합을 사전 연산하고, 들로네 삼각분할로 절차적 스켈레톤과 메시를 생성하여 SkinnedMeshRenderer 기반의 실시간 형태 진화를 구현했습니다.',
+        tags: ['C#', 'Procedural Mesh', 'Generative Art'],
       },
     ],
   },
@@ -202,22 +226,68 @@ const PERSONAL_WORK = [
 ]
 
 const PERSONAL_WORK_DETAILS = {
+  'vr-tooth-brushing': {
+    title: 'VR Tooth Brushing',
+    period: '2022.01 ~ 2022.03',
+    engine: 'unreal',
+    images: ['/VRToothBrush.png', '/VRToothBrush2.png'],
+    tags: ['VR', 'Shader', 'Optimization'],
+    accent: '#7a5a9a',
+    overview: '언리얼 엔진 4 기반의 VR 양치질 교육 시뮬레이션입니다. Motion Controller로 칫솔을 조작해 치아 표면의 치석을 제거합니다. 칫솔·치석·구강 경계 간의 충돌 판정을 오브젝트 타입별 커스텀 콜리전 채널로 분리 설계하고, Custom Stencil 기반 아웃라인으로 상호작용 가능한 오브젝트를 시각적으로 강조했습니다.',
+    sections: [
+      {
+        title: 'VR 인터랙션 & 커스텀 콜리전 시스템',
+        content: 'Motion Controller의 움직임을 칫솔에 1:1로 매핑하여 직관적인 VR 인터랙션을 구현했습니다. 칫솔·치석·구강 경계 각각의 충돌 판정을 독립적인 커스텀 콜리전 채널로 분리하고, 구강 경계 전용 채널로 칫솔의 이동 가능 범위를 물리적으로 제한해 관통을 방지했습니다. 치아 표면의 32개 이상 치석 인스턴스를 개별 관리하며, 칫솔 접촉 이벤트마다 제거 상태를 갱신해 세밀한 양치 진행도를 추적합니다.',
+      },
+      {
+        title: 'Custom Stencil 기반 아웃라인',
+        content: '강조할 오브젝트에 고유 Stencil ID를 부여하고 렌더링 시 별도의 Stencil 버퍼에 기록합니다. 이후 포스트 프로세스 패스에서 인접 픽셀의 Stencil ID를 비교해 경계 픽셀에만 아웃라인 색상을 출력합니다. 메시를 추가로 그리지 않고 스크린 스페이스에서 경계를 감지하므로, 드로우 콜 증가 없이 오브젝트가 겹쳐도 정확한 실루엣 아웃라인을 렌더링할 수 있습니다.',
+      },
+    ],
+  },
   'the-way': {
     title: 'The Way',
     period: '2021.03 ~ 2021.05',
     videoId: 'vusiw_7MrlU',
     engine: 'unreal',
-    tags: ['C++', 'Behavior Tree', 'Shader'],
+    tags: ['C++', 'Behavior Tree'],
     accent: '#4a6aaa',
-    overview: '언리얼 엔진 4의 내부 프레임워크와 그래픽스 파이프라인을 직접 탐구하기 위해 진행한 프로젝트입니다. 단순한 기능 사용에 그치지 않고 엔진의 동작 원리를 이해하는 것을 목표로 했으며, Behavior Tree 기반 AI와 셰이더 연출 시스템을 직접 설계·구현했습니다.',
+    overview: '언리얼 엔진 4의 내부 프레임워크를 직접 탐구하기 위해 Blueprint 없이 순수 C++로 구현한 캐릭터 액션 게임 프로토타입입니다. 캐릭터 생애주기 전반(스폰 → 전투 → 사망 → 아이템 드롭)을 컴포넌트 기반으로 설계하고, Behavior Tree AI·애니메이션 시스템·데이터 관리 구조까지 직접 구축하며 엔진의 동작 원리를 깊이 있게 이해하는 것을 목표로 했습니다.',
     sections: [
       {
-        title: 'Behavior Tree 기반 AI 설계',
-        content: 'UE4의 Behavior Tree를 활용해 지능적으로 상호작용하는 AI를 설계했습니다. 조건 노드와 행동 노드를 계층적으로 구성해 상황에 따라 유연하게 반응하는 NPC 행동 패턴을 구현했으며, Blackboard를 통한 상태 공유로 복잡한 판단 흐름을 명확하게 정리했습니다.',
+        title: '컴포넌트 기반 캐릭터 아키텍처',
+        content: 'ABaseCharacter를 중심으로 스탯 관리(UCharacterStatComponent), 무기 처리(AWeaponBase), 애니메이션 제어(UBaseAnimInstance)를 독립적인 컴포넌트로 분리했습니다. 캐릭터 데이터는 FCharacterData 구조체로 정의해 데이터와 로직을 명확히 분리했으며, 전투 시스템에서는 콤보 어택 타이밍 판정, 피격 시 머티리얼 이펙트·사운드 처리, 사망 시 드롭 아이템 처리까지 생애주기 전반을 구현했습니다.',
       },
       {
-        title: 'Material Function 기반 셰이더 연출',
-        content: 'Material Function을 활용해 재사용 가능한 셰이더 모듈을 설계하고, 복잡한 시각 연출을 효율적으로 구성했습니다. 연출 데이터를 외부에서 주입하는 데이터 드리븐 방식으로 셰이더 파라미터를 관리해 콘텐츠 변경 시 코드 수정 없이 연출을 조정할 수 있도록 구조화했습니다.',
+        title: 'Behavior Tree 기반 AI 설계',
+        content: 'BTTask, BTDecorator, BTService를 직접 구현해 Behavior Tree를 커스터마이징했습니다. ABaseAIController가 트리를 관리하며, 조건 노드와 행동 노드를 계층적으로 구성해 상황에 따라 유연하게 반응하는 NPC 행동 패턴을 구현했습니다. Blackboard를 통한 상태 공유로 복잡한 판단 흐름을 명확하게 정리했습니다.',
+      },
+      {
+        title: '애니메이션 시스템 & 데이터 관리',
+        content: 'UBaseAnimInstance에 AnimNotify와 AnimNotifyState를 커스텀 구현해 게임플레이 이벤트를 애니메이션 타임라인과 정밀하게 동기화했습니다. 데이터 관리 측면에서는 템플릿 기반의 UDataTableManager를 설계해 다양한 데이터 타입을 타입 안전하게 처리할 수 있도록 했으며, FWeaponStatsData처럼 Id와 Level을 복합 키로 활용하는 구조도 템플릿 특수화로 유연하게 지원했습니다.',
+      },
+    ],
+  },
+  'genetic-glass': {
+    title: 'MorphSeed',
+    period: '2021.08 ~ 2021.11',
+    engine: 'unity',
+    videoId: 'Ba-YKMXSdtQ',
+    tags: ['C#', 'Procedural Mesh', 'Generative Art'],
+    accent: '#4a6aaa',
+    overview: '유전 알고리즘 원리를 시각화한 인터랙티브 생성 아트 시뮬레이션입니다. 11종의 베이스 메시 모델에서 3개를 무작위로 선택해 교배하는 방식으로 생명체가 실시간으로 형태를 진화시킵니다. 버텍스 분포 기반의 절차적 스켈레톤 생성, 들로네 삼각분할을 이용한 메시 위상 구성, SkinnedMeshRenderer 기반의 실시간 형태 보간까지 메시 변환의 전 과정을 직접 구현했습니다.',
+    sections: [
+      {
+        title: '유전적 진화 시스템',
+        content: '3개의 부모 메시를 선택하고 각 버텍스 위치를 선형 보간해 자식 형태를 계산하는 방식으로 유전 교배를 구현했습니다. 11종 모델에서 가능한 165가지(C(11,3)) 조합은 앱 초기화 시 사전 연산 후 이진 직렬화로 디스크에 캐시하며, 런타임에는 파일 로드만으로 즉시 사용합니다. 각 생명체는 60초 주기로 진화를 트리거하고 3,600초에 걸쳐 목표 형태로 수렴합니다.',
+      },
+      {
+        title: '절차적 스켈레톤 생성 & 들로네 삼각분할',
+        content: '사전 정의된 리그 없이 버텍스를 Z축 기준으로 정렬하고 클러스터로 분할해 가중 평균 위치에 본을 자동 배치합니다. 본 사이의 메시 공백은 MIConvexHull 라이브러리의 3D 들로네 삼각분할로 채웁니다. 들로네 삼각분할은 생성되는 삼각형의 최소 내각을 최대화하는 성질을 가져, 가늘고 긴 슬리버(sliver) 삼각형 없이 균일한 삼각망을 보장합니다. 이후 각 버텍스에서 가장 가까운 본까지의 거리를 기반으로 BoneWeight를 계산해 SkinnedMeshRenderer를 런타임에 직접 갱신합니다.',
+      },
+      {
+        title: '매니저 패턴 아키텍처 & 자율 행동',
+        content: '싱글턴 기반 매니저 시스템으로 시스템 간 의존성을 명시적으로 관리합니다. 각 생명체는 CoMovement 코루틴으로 독립 자율 이동하며, 활동 범위를 벗어나면 내측으로 방향을 전환하는 경계 처리를 적용했습니다. Unity Animation Rigging의 DampedTransform으로 급격한 스켈레탈 변화를 부드럽게 완충합니다.',
       },
     ],
   },
@@ -369,6 +439,9 @@ const SKILLS = [
   { category: 'Tools',        items: ['Visual Studio', 'Perforce', 'GitHub', 'SourceTree', 'SVN', 'TeamCity', 'Confluence', 'Jira', 'Cursor', 'Claude Code'] },
 ]
 
+// 헤더 배지는 SKILLS에서 자동 파생 — SKILLS만 수정하면 헤더도 동기화됨
+const TECH_BADGES = SKILLS.flatMap(s => s.items)
+
 const AWARDS = [
   { title: '청강문화산업대학교 만화애니게임학과 졸업', year: '2017', type: 'edu' },
   { title: '대한민국 앱 창작 경진대회 금상', org: '중소기업청', year: '2012', type: 'gold' },
@@ -494,6 +567,24 @@ function YTBanner({ videoId, label }) {
         </div>
       </div>
     </button>
+  )
+}
+
+// ─── 이미지 갤러리 ─────────────────────────────────────────────────────────────
+
+function ImageGallery({ images }) {
+  return (
+    <div className={`grid gap-2 ${images.length > 1 ? 'grid-cols-2' : 'grid-cols-1'}`}>
+      {images.map((src, i) => (
+        <div key={i} className="relative overflow-hidden rounded-lg bg-black" style={{ aspectRatio: '16/9' }}>
+          <img
+            src={src}
+            alt={`screenshot ${i + 1}`}
+            className="w-full h-full object-cover"
+          />
+        </div>
+      ))}
+    </div>
   )
 }
 
@@ -656,18 +747,12 @@ function About() {
       <SectionHeading>About Me</SectionHeading>
       <div className="space-y-4 max-w-2xl">
         <motion.p variants={fadeUp} className="text-gray-700 text-sm leading-8">
-          2017년부터{' '}
-          <span className="font-semibold" style={{ color: ACCENT }}>언리얼과 유니티</span>를 아우르며 모바일 및 PC 글로벌 서비스를 개발해 왔습니다.
-          <span className="font-semibold" style={{ color: ACCENT }}>닌텐도 '닥터 마리오 월드' 초기 빌드업</span>부터{' '}
-          <span className="font-semibold" style={{ color: ACCENT }}>'로스트아크' 5년 라이브 서비스</span>까지 참여하며 글로벌 라이브 서비스 경험을 쌓았습니다.
-          또한 다양한 콘텐츠 개발과{' '}
-          <span className="font-semibold" style={{ color: ACCENT }}>로우 레벨 기반의 시스템 설계·개선</span>을 통해 안정적인 글로벌 서비스 환경을 확보했습니다.
+          {'2017년부터 '}<span className="font-semibold" style={{ color: ACCENT }}>언리얼과 유니티 엔진</span>{'을 아우르며 모바일 및 PC 플랫폼의 글로벌 서비스를 개발해 왔습니다. 닌텐도 IP '}<span className="font-semibold" style={{ color: ACCENT }}>{'\'닥터 마리오 월드\'의 초기 빌드업'}</span>{'을 통해 전 세계 59개국 동시 런칭하고, '}<span className="font-semibold" style={{ color: ACCENT }}>{'\'로스트아크\'의 5년 라이브 서비스'}</span>{'에 참여하며 160여 개국에 이르는 대규모 글로벌 서비스를 경험했습니다. 이러한 과정에서 다양한 콘텐츠 개발과 '}<span className="font-semibold" style={{ color: ACCENT }}>로우 레벨 기반의 시스템 설계·개선</span>{'을 통해 안정적인 글로벌 서비스 환경을 구축하는 데 기여했습니다.'}
         </motion.p>
         <motion.p variants={fadeUp} className="text-gray-700 text-sm leading-8">
           단순 기능 구현에 그치지 않고,{' '}
-          <span className="font-semibold" style={{ color: ACCENT }}>작업 프로세스와 협업 구조를 직접 개선</span>해 팀 생산성을 높인 리딩 경험이 있습니다.
-          로우 레벨에 대한 탄탄한 이해를 바탕으로 신기술을 흡수하는 데 거부감이 없으며,{' '}
-          <span className="font-semibold" style={{ color: ACCENT }}>Cursor와 Claude Code</span> 같은 AI 도구를 워크플로우에 적극 활용해{' '}
+          <span className="font-semibold" style={{ color: ACCENT }}>작업 프로세스와 협업 구조를 직접 개선하며 팀 생산성을 높이는 리딩 경험</span>{'을 쌓았습니다. 로우 레벨에 대한 탄탄한 이해를 바탕으로 새로운 환경과 도구에 빠르게 적응하며, '}
+          <span className="font-semibold" style={{ color: ACCENT }}>Cursor와 Claude Code</span>{' 같은 AI 도구를 워크플로우에 적극 활용해 '}
           <span className="font-semibold" style={{ color: ACCENT }}>실질적인 협업 효율</span>을 만드는 개발을 선호합니다.
         </motion.p>
       </div>
@@ -804,6 +889,11 @@ function CompanyCard({ accent, company, totalPeriod, projects }) {
                     <YTBanner videoId={proj.videoId} label={`${proj.title} — YouTube`} />
                   </div>
                 )}
+                {!proj.videoId && proj.images && (
+                  <div className="mb-4">
+                    <ImageGallery images={proj.images} />
+                  </div>
+                )}
 
                 <div className="space-y-4">
                   {proj.contributions.map((c, j) => (
@@ -932,7 +1022,7 @@ function PersonalWork({ onSelect }) {
     <Section id="personal">
       <SectionHeading>Personal Work</SectionHeading>
       <motion.p variants={fadeUp} className="text-gray-500 text-sm mb-8 -mt-4 leading-relaxed">
-        상용 엔진이 내부적으로 어떻게 돌아가는지 직접 확인해보고 싶어 시작한 프로젝트들입니다. DirectX와 OpenGL을 이용해 렌더러, 물리, 애니메이션 엔진을 직접 구현하고, IOCP 서버나 NDK 환경까지 설계하며 전반적인 기술 스택을 경험해 왔습니다. 도구의 사용법을 넘어 기술적 본질을 깊이 있게 이해하고 싶어 진행한 개인 프로젝트들입니다.
+        상용 엔진이 내부적으로 어떻게 돌아가는지 직접 확인해보고 싶어 시작한 프로젝트들입니다. DirectX와 OpenGL 기반 렌더러부터 GJK/EPA 물리 시뮬레이션, IOCP 서버, NDK 크로스 플랫폼 환경까지 직접 구축하며 기반 기술 스택을 경험해 왔습니다. 나아가 언리얼·유니티의 아키텍처를 탐구하거나 절차적 메시 생성 같은 흥미로운 기술 과제들을 스스로 파고들며 진행한 개인 프로젝트들입니다.
       </motion.p>
       <motion.div variants={fadeUp}>
         <div className="rounded-xl overflow-hidden border-2" style={{ borderColor: headerColor }}>
@@ -973,6 +1063,11 @@ function PersonalWork({ onSelect }) {
                         {proj.videoId && (
                           <div className="mb-4">
                             <YTBanner videoId={proj.videoId} label={`${proj.title} — YouTube`} />
+                          </div>
+                        )}
+                        {!proj.videoId && proj.images && (
+                          <div className="mb-4">
+                            <ImageGallery images={proj.images} />
                           </div>
                         )}
                         <div className="flex gap-4">
@@ -1046,6 +1141,11 @@ function ProjectDetailPage({ projectId, onBack }) {
             <YTBanner videoId={detail.videoId} label={`${detail.title} — YouTube`} />
           </div>
         )}
+        {!detail.videoId && detail.images && (
+          <div className="mt-5">
+            <ImageGallery images={detail.images} />
+          </div>
+        )}
 
         {/* 개요 */}
         <div className="flex gap-4 mt-6">
@@ -1110,7 +1210,7 @@ const ACTIVITIES = [
         desc: '글로벌 서비스의 지역별 요구사항에 유연하게 대응하기 위한 데이터 중심 아키텍처 설계와 기술적 확장성 확보 방안을 다뤘습니다.',
       },
       {
-        title: '게임 개발 프로세스',
+        title: '게임 개발 파이프라인',
         org: '도봉 캠퍼스',
         desc: '실제 프로젝트 파이프라인을 분석하여 타 직군과의 마찰을 줄이고 효율적으로 소통하는 협업 방식을 다뤘습니다.',
       },
@@ -1233,6 +1333,52 @@ function Awards() {
   )
 }
 
+// ─── Contact ───────────────────────────────────────────────────────────────────
+
+function Contact() {
+  return (
+    <Section id="contact">
+      <SectionHeading>Contact</SectionHeading>
+      <motion.div variants={fadeUp} className="rounded-xl overflow-hidden border border-gray-200 bg-white">
+        <div className="px-6 py-8 md:py-10 flex flex-col md:flex-row items-center md:items-stretch gap-6 md:gap-0 md:divide-x divide-gray-100">
+          {/* 이메일 */}
+          <div className="flex-1 flex flex-col items-center gap-3 md:px-8">
+            <div className="w-10 h-10 rounded-full flex items-center justify-center" style={{ backgroundColor: `${ACCENT}18` }}>
+              <Mail size={18} style={{ color: ACCENT }} />
+            </div>
+            <div className="text-center">
+              <p className="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-1">Email</p>
+              <a
+                href="mailto:ljslove119@naver.com"
+                className="text-sm font-semibold text-gray-800 hover:underline transition-colors"
+                style={{ color: ACCENT }}
+              >
+                ljslove119@naver.com
+              </a>
+            </div>
+          </div>
+          {/* 전화 */}
+          <div className="flex-1 flex flex-col items-center gap-3 md:px-8">
+            <div className="w-10 h-10 rounded-full flex items-center justify-center" style={{ backgroundColor: `${ACCENT}18` }}>
+              <Phone size={18} style={{ color: ACCENT }} />
+            </div>
+            <div className="text-center">
+              <p className="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-1">Phone</p>
+              <a
+                href="tel:01052235291"
+                className="text-sm font-semibold"
+                style={{ color: ACCENT }}
+              >
+                010-5223-5291
+              </a>
+            </div>
+          </div>
+        </div>
+      </motion.div>
+    </Section>
+  )
+}
+
 // ─── App ───────────────────────────────────────────────────────────────────────
 
 function getProjectFromURL() {
@@ -1327,6 +1473,7 @@ export default function App() {
             <Skills />
             <PersonalWork onSelect={selectProject} />
             <Awards />
+            <Contact />
             <footer className="text-center py-6">
               <p className="text-gray-400 text-xs">© 2026 Seong-taek Lim · Game Client Developer</p>
             </footer>
