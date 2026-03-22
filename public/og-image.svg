@@ -1,11 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#0d0d1a"/>
-      <stop offset="100%" stop-color="#111827"/>
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#1e293b"/>
     </linearGradient>
-    <linearGradient id="accent-line" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0%" stop-color="#34799e"/>
+    <linearGradient id="glow" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#34799e" stop-opacity="0.4"/>
       <stop offset="100%" stop-color="#34799e" stop-opacity="0"/>
     </linearGradient>
   </defs>
@@ -13,48 +13,37 @@
   <!-- Background -->
   <rect width="1200" height="630" fill="url(#bg)"/>
 
-  <!-- Subtle grid pattern -->
-  <g opacity="0.04">
-    <line x1="0" y1="105" x2="1200" y2="105" stroke="white" stroke-width="1"/>
-    <line x1="0" y1="210" x2="1200" y2="210" stroke="white" stroke-width="1"/>
-    <line x1="0" y1="315" x2="1200" y2="315" stroke="white" stroke-width="1"/>
-    <line x1="0" y1="420" x2="1200" y2="420" stroke="white" stroke-width="1"/>
-    <line x1="0" y1="525" x2="1200" y2="525" stroke="white" stroke-width="1"/>
-    <line x1="200" y1="0" x2="200" y2="630" stroke="white" stroke-width="1"/>
-    <line x1="400" y1="0" x2="400" y2="630" stroke="white" stroke-width="1"/>
-    <line x1="600" y1="0" x2="600" y2="630" stroke="white" stroke-width="1"/>
-    <line x1="800" y1="0" x2="800" y2="630" stroke="white" stroke-width="1"/>
-    <line x1="1000" y1="0" x2="1000" y2="630" stroke="white" stroke-width="1"/>
-  </g>
+  <!-- Top glow strip -->
+  <rect x="0" y="0" width="1200" height="3" fill="#34799e"/>
+
+  <!-- Left glow panel -->
+  <rect x="0" y="0" width="500" height="630" fill="url(#glow)"/>
 
   <!-- Left accent bar -->
-  <rect x="80" y="180" width="4" height="270" fill="#34799e" rx="2"/>
+  <rect x="80" y="160" width="5" height="310" fill="#34799e" rx="2"/>
 
   <!-- Name -->
-  <text x="112" y="270" font-family="'Segoe UI', Arial, sans-serif" font-size="72" font-weight="700" fill="white" letter-spacing="-1">임성택</text>
+  <text x="115" y="290" font-family="'Malgun Gothic', 'Apple SD Gothic Neo', 'Noto Sans KR', Arial, sans-serif" font-size="96" font-weight="700" fill="white">임성택</text>
 
   <!-- Role -->
-  <text x="114" y="334" font-family="'Segoe UI', Arial, sans-serif" font-size="28" font-weight="400" fill="#34799e" letter-spacing="1">Game Client Developer</text>
+  <text x="118" y="360" font-family="'Segoe UI', Arial, sans-serif" font-size="32" font-weight="400" fill="#34799e" letter-spacing="2">Game Client Developer</text>
 
   <!-- Divider -->
-  <rect x="114" y="362" width="480" height="1" fill="url(#accent-line)" opacity="0.6"/>
+  <rect x="118" y="390" width="560" height="2" fill="#34799e" opacity="0.3" rx="1"/>
 
   <!-- Tags -->
-  <g font-family="'Segoe UI', Arial, sans-serif" font-size="16" fill="#9ca3af">
-    <text x="114" y="400">Unreal Engine  ·  Unity  ·  C++  ·  C#  ·  10년 경력</text>
-  </g>
+  <text x="118" y="435" font-family="'Segoe UI', Arial, sans-serif" font-size="22" fill="#94a3b8" letter-spacing="1">Unreal Engine  ·  Unity  ·  C++  ·  C#  ·  10년 경력</text>
 
-  <!-- Career highlights -->
-  <g font-family="'Segoe UI', Arial, sans-serif" font-size="18" fill="#e5e7eb">
-    <text x="114" y="450">로스트아크 · 닥터 마리오 월드</text>
-  </g>
+  <!-- Career -->
+  <text x="118" y="480" font-family="'Malgun Gothic', 'Apple SD Gothic Neo', 'Noto Sans KR', Arial, sans-serif" font-size="24" fill="#cbd5e1">로스트아크  ·  닥터 마리오 월드</text>
 
   <!-- Domain badge -->
-  <rect x="114" y="482" width="220" height="36" rx="18" fill="#34799e" opacity="0.15" stroke="#34799e" stroke-width="1" stroke-opacity="0.4"/>
-  <text x="224" y="505" font-family="'Segoe UI', Arial, sans-serif" font-size="15" fill="#34799e" text-anchor="middle" letter-spacing="0.5">creataek.dev</text>
+  <rect x="118" y="508" width="200" height="38" rx="19" fill="#34799e" opacity="0.2" stroke="#34799e" stroke-width="1.5"/>
+  <text x="218" y="532" font-family="'Segoe UI', Arial, sans-serif" font-size="17" fill="#34799e" text-anchor="middle" letter-spacing="1">creataek.dev</text>
 
-  <!-- Decorative circle top-right -->
-  <circle cx="1050" cy="180" r="160" fill="none" stroke="#34799e" stroke-width="1" opacity="0.12"/>
-  <circle cx="1050" cy="180" r="100" fill="none" stroke="#34799e" stroke-width="1" opacity="0.1"/>
-  <circle cx="1050" cy="180" r="40" fill="#34799e" opacity="0.08"/>
+  <!-- Decorative circle right -->
+  <circle cx="1020" cy="315" r="220" fill="none" stroke="#34799e" stroke-width="1" opacity="0.15"/>
+  <circle cx="1020" cy="315" r="150" fill="none" stroke="#34799e" stroke-width="1" opacity="0.1"/>
+  <circle cx="1020" cy="315" r="80" fill="#34799e" opacity="0.06"/>
+  <circle cx="1020" cy="315" r="30" fill="#34799e" opacity="0.15"/>
 </svg>
