@@ -34,7 +34,7 @@
   <text x="112" y="270" font-family="'Segoe UI', Arial, sans-serif" font-size="72" font-weight="700" fill="white" letter-spacing="-1">임성택</text>
 
   <!-- Role -->
-  <text x="114" y="334" font-family="'Segoe UI', Arial, sans-serif" font-size="28" font-weight="400" fill="#34799e" letter-spacing="1">Senior Game Client Developer</text>
+  <text x="114" y="334" font-family="'Segoe UI', Arial, sans-serif" font-size="28" font-weight="400" fill="#34799e" letter-spacing="1">Game Client Developer</text>
 
   <!-- Divider -->
   <rect x="114" y="362" width="480" height="1" fill="url(#accent-line)" opacity="0.6"/>
